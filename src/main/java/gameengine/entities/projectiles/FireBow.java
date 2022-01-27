@@ -43,7 +43,6 @@ public class FireBow extends Projectile {
     }
     @Override
     public void tick() {
-        System.out.println("xVel: "+xVel);
         xNextPos = xPos + xVel;
         yNextPos = yPos + yVel;
 
