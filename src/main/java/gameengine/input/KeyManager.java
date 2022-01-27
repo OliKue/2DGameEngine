@@ -11,6 +11,7 @@ public class KeyManager implements KeyListener {
         this.keys = new boolean[256];
     }
 
+    public boolean escapeReleased=false;
     public boolean[] keys;
     public static KeyManager getInstance() {
         return OBJ;
@@ -34,5 +35,9 @@ public class KeyManager implements KeyListener {
             return;
         }
         keys[e.getKeyCode()] = false;
+
+        if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+            escapeReleased = true;
+        }
     }
 }

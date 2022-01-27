@@ -5,6 +5,9 @@ import java.awt.image.BufferedImage;
 public class Assets {
     private static final Assets OBJ = new Assets();
 
+    //Menu
+    public BufferedImage menuScreen;
+
     // Mage
     public BufferedImage[] mage_idle_left = new BufferedImage[25];
     public BufferedImage[] mage_idle_right = new BufferedImage[25];
@@ -32,6 +35,13 @@ public class Assets {
     }
 
     public void init() {
+        menuScreen = ImageLoader.loadImage("/PNG/Menuscreen/Background.png");
+
+        initTiles();
+        initMageAnimations();
+    }
+
+    public void initTiles(){
         tile12 = ImageLoader.loadImage("/PNG/Tiles/tile12.png");
         tile30 = ImageLoader.loadImage("/PNG/Tiles/tile30.png");
         tile31 = ImageLoader.loadImage("/PNG/Tiles/tile31.png");
@@ -39,6 +49,10 @@ public class Assets {
         tile52 = ImageLoader.loadImage("/PNG/Tiles/tile52.png");
         tile53 = ImageLoader.loadImage("/PNG/Tiles/tile53.png");
         tile55 = ImageLoader.loadImage("/PNG/Tiles/tile55.png");
+    }
+    public void initMageAnimations(){
+
+
 
         mage_idle_right[0] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
         mage_idle_right[1] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
@@ -128,6 +142,5 @@ public class Assets {
         mage_jump_right[5] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump6.png");
         mage_jump_right[6] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump7.png");
     }
-
 
 }

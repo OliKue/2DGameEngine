@@ -1,10 +1,11 @@
 package gameengine;
 
-import gameengine.entities.Entity;
+import gameengine.display.Display;
 import gameengine.entities.EntityManager;
 import gameengine.entities.Player;
-import gameengine.graphics.Display;
+import gameengine.graphics.Assets;
 import gameengine.graphics.GameCamera;
+import gameengine.graphics.ImageLoader;
 import gameengine.input.KeyManager;
 import gameengine.tile.Tile;
 import gameengine.world.Background;
@@ -16,21 +17,24 @@ import java.awt.image.BufferStrategy;
 
 public class Game implements Runnable {
 
-    public static int width = 800, height = 500;
+
+    public static int width = 1600, height = 900;
     public static String title = "gameengine.Game";
 
     private Display display;
     private boolean running = false;
     private Thread thread;
 
-    public Game() {
-
+    public GameStates gameState = GameStates.MENU;
+    public enum GameStates {
+        MENU,
+        GAME
     }
 
     public void init() {
         this.display = new Display(title, width, height);
 
-        EntityManager.setPlayer(new Player( 48,World.getInstance().getHeight()* Tile.TILEHEIGTH - 48));
+        EntityManager.setPlayer(new Player(48, World.getInstance().getHeight() * Tile.TILEHEIGTH - 48));
 
     }
 
@@ -66,7 +70,7 @@ public class Game implements Runnable {
             }
 
             if (timer >= 1000000000) {
-                System.out.println("FPS: " + ticks);
+                //System.out.println("FPS: " + ticks);
 
                 ticks = 0;
                 timer = 0;
@@ -76,10 +80,30 @@ public class Game implements Runnable {
         stop();
     }
 
+
     private void tick() {
-        GameCamera.getInstance().tick();
-        EntityManager.getInstance().tick();
-        Background.getInstance().tick();
+
+        switch (gameState) {
+            case GAME:
+                GameCamera.getInstance().tick();
+                EntityManager.getInstance().tick();
+                Background.getInstance().tick();
+
+                //Change to Menu
+                if (KeyManager.getInstance().escapeReleased) {
+                    gameState = GameStates.MENU;
+                    KeyManager.getInstance().escapeReleased=false;
+                }
+                break;
+            case MENU:
+                //Change to Game
+                if (KeyManager.getInstance().escapeReleased || KeyManager.getInstance().keys[KeyEvent.VK_P]) {
+                    gameState = GameStates.GAME;
+                    KeyManager.getInstance().escapeReleased=false;
+                }
+                break;
+        }
+
     }
 
     private void render() {
@@ -96,11 +120,17 @@ public class Game implements Runnable {
         //Clear
         g.clearRect(0, 0, width, height);
         //Draw new
-        //TODO
-        Background.getInstance().render(g);
-        GameCamera.getInstance().render(g);
-        EntityManager.getInstance().render(g);
+        switch (gameState) {
+            case GAME:
+                Background.getInstance().render(g);
+                GameCamera.getInstance().render(g);
+                EntityManager.getInstance().render(g);
+                break;
+            case MENU:
+                g.drawImage(Assets.getInstance().menuScreen, 0, 0, null);
+                break;
 
+        }
         bs.show();
         g.dispose();
     }

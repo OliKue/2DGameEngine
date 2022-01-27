@@ -39,6 +39,7 @@ public class Player extends Creature {
         this.maxXVel = 10;
 
         this.yAcc = 30f;
+        this.maxYVel = 20;
 
         //Add animations
         animations.add(animation_idle_left);
@@ -54,7 +55,9 @@ public class Player extends Creature {
         checkOnGround();
         // Movement
         if (falling || jumping) {
-            yVel = yVel + GRAVITY;
+            if(yVel<maxYVel) {
+                yVel = yVel + GRAVITY;
+            }
         } else {
             yVel = 0;
             if (jumpDelayTicks > 0) {

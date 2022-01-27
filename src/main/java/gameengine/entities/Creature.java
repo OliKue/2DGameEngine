@@ -10,9 +10,9 @@ public abstract class Creature extends Entity {
 
 
     //Movement
-    protected float xAcc =48, yAcc =3;
+    protected float xAcc =3, yAcc =3;
     protected float xVel, yVel;
-    protected float maxXVel=10;
+    protected float maxXVel=10,maxYVel=20;
 
     //Jumping
     protected boolean jumping=false;
