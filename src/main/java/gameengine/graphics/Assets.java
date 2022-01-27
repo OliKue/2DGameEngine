@@ -16,6 +16,12 @@ public class Assets {
     public BufferedImage[] mage_jump_left = new BufferedImage[7];
     public BufferedImage[] mage_jump_right = new BufferedImage[7];
 
+    // Fire
+    public BufferedImage[] fire_flying_left = new BufferedImage[4];
+    public BufferedImage[] fire_flying_right = new BufferedImage[4];
+    public BufferedImage[] fire_end_left = new BufferedImage[2];
+    public BufferedImage[] fire_end_right = new BufferedImage[2];
+
     //Tiles
     public BufferedImage tile12;
     public BufferedImage tile30;
@@ -39,9 +45,10 @@ public class Assets {
 
         initTiles();
         initMageAnimations();
+        initFireAnimations();
     }
 
-    public void initTiles(){
+    public void initTiles() {
         tile12 = ImageLoader.loadImage("/PNG/Tiles/tile12.png");
         tile30 = ImageLoader.loadImage("/PNG/Tiles/tile30.png");
         tile31 = ImageLoader.loadImage("/PNG/Tiles/tile31.png");
@@ -50,8 +57,8 @@ public class Assets {
         tile53 = ImageLoader.loadImage("/PNG/Tiles/tile53.png");
         tile55 = ImageLoader.loadImage("/PNG/Tiles/tile55.png");
     }
-    public void initMageAnimations(){
 
+    public void initMageAnimations() {
 
 
         mage_idle_right[0] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
@@ -108,39 +115,56 @@ public class Assets {
         mage_idle_left[24] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL14.png");
 
 
-        mage_run_right[0] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/run1.png");
-        mage_run_right[1] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/run2.png");
-        mage_run_right[2] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/run3.png");
-        mage_run_right[3] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/run4.png");
-        mage_run_right[4] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/run5.png");
-        mage_run_right[5] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/run6.png");
-        mage_run_right[6] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/run7.png");
-        mage_run_right[7] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/run8.png");
+        mage_run_right[0] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run1.png");
+        mage_run_right[1] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run2.png");
+        mage_run_right[2] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run3.png");
+        mage_run_right[3] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run4.png");
+        mage_run_right[4] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run5.png");
+        mage_run_right[5] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run6.png");
+        mage_run_right[6] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run7.png");
+        mage_run_right[7] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run8.png");
 
-        mage_run_left[0] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/runL1.png");
-        mage_run_left[1] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/runL2.png");
-        mage_run_left[2] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/runL3.png");
-        mage_run_left[3] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/runL4.png");
-        mage_run_left[4] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/runL5.png");
-        mage_run_left[5] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/runL6.png");
-        mage_run_left[6] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/runL7.png");
-        mage_run_left[7] =  ImageLoader.loadImage("/PNG/Character/Mage/Run/runL8.png");
+        mage_run_left[0] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL1.png");
+        mage_run_left[1] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL2.png");
+        mage_run_left[2] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL3.png");
+        mage_run_left[3] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL4.png");
+        mage_run_left[4] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL5.png");
+        mage_run_left[5] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL6.png");
+        mage_run_left[6] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL7.png");
+        mage_run_left[7] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL8.png");
 
-        mage_jump_left[0] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL1.png");
-        mage_jump_left[1] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL2.png");
-        mage_jump_left[2] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL3.png");
-        mage_jump_left[3] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL4.png");
-        mage_jump_left[4] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL5.png");
-        mage_jump_left[5] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL6.png");
-        mage_jump_left[6] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL7.png");
+        mage_jump_left[0] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL1.png");
+        mage_jump_left[1] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL2.png");
+        mage_jump_left[2] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL3.png");
+        mage_jump_left[3] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL4.png");
+        mage_jump_left[4] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL5.png");
+        mage_jump_left[5] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL6.png");
+        mage_jump_left[6] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL7.png");
 
-        mage_jump_right[0] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump1.png");
-        mage_jump_right[1] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump2.png");
-        mage_jump_right[2] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump3.png");
-        mage_jump_right[3] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump4.png");
-        mage_jump_right[4] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump5.png");
-        mage_jump_right[5] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump6.png");
-        mage_jump_right[6] =  ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump7.png");
+        mage_jump_right[0] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump1.png");
+        mage_jump_right[1] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump2.png");
+        mage_jump_right[2] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump3.png");
+        mage_jump_right[3] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump4.png");
+        mage_jump_right[4] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump5.png");
+        mage_jump_right[5] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump6.png");
+        mage_jump_right[6] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump7.png");
     }
 
+    public void initFireAnimations() {
+        fire_flying_left[0] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extraL1.png");
+        fire_flying_left[1] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extraL2.png");
+        fire_flying_left[2] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extraL3.png");
+        fire_flying_left[3] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extraL2.png");
+
+        fire_flying_right[0] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra1.png");
+        fire_flying_right[1] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra2.png");
+        fire_flying_right[2] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra3.png");
+        fire_flying_right[3] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra2.png");
+
+        fire_end_left[0] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extraL4.png");
+        fire_end_left[1] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extraL5.png");
+
+        fire_end_right[0] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra4.png");
+        fire_end_right[1] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra5.png");
+    }
 }

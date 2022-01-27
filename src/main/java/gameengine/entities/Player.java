@@ -1,5 +1,6 @@
 package gameengine.entities;
 
+import gameengine.entities.projectiles.FireBow;
 import gameengine.graphics.Animation;
 import gameengine.graphics.Assets;
 import gameengine.graphics.GameCamera;
@@ -24,6 +25,10 @@ public class Player extends Creature {
 
 
     private Animation animation = animation_idle_right;
+
+    private int attack_cd = 30;
+    private int attack_cdCount=0;
+    private boolean attack_rdy=true;
 
     public Player(int x, int y) {
         super(x, y, 128, 128);
@@ -55,13 +60,22 @@ public class Player extends Creature {
         checkOnGround();
         // Movement
         if (falling || jumping) {
-            if(yVel<maxYVel) {
+            if (yVel < maxYVel) {
                 yVel = yVel + GRAVITY;
             }
         } else {
             yVel = 0;
             if (jumpDelayTicks > 0) {
                 jumpDelayTicks--;
+            }
+        }
+
+        // Attack cooldown
+        if(!attack_rdy){
+            attack_cdCount++;
+            if(attack_cd<attack_cdCount){
+                attack_rdy=true;
+                attack_cdCount=0;
             }
         }
         getInput();
@@ -111,6 +125,12 @@ public class Player extends Creature {
     }
 
     private void getInput() {
+
+        //Attack
+        if (KeyManager.getInstance().keys[KeyEvent.VK_E] && attack_rdy) {
+            attack_rdy=false;
+            EntityManager.getInstance().addEntity(new FireBow((int) xPos, (int) yPos, facingLeft));
+        }
         //JUMP
         if (KeyManager.getInstance().keys[KeyEvent.VK_SPACE] || KeyManager.getInstance().keys[KeyEvent.VK_W]) {
             if (!jumping && jumpDelayTicks == 0) {
@@ -119,12 +139,6 @@ public class Player extends Creature {
                 jumpDelayTicks = jumpDelay;
             }
         }
-//        //FLY
-//        if (KeyManager.getInstance().keys[KeyEvent.VK_UP]) {
-//            if (!jumping && jumpDelayTicks == 0) {
-//                yVel = yVel - yAcc;
-//            }
-//        }
 
         if (KeyManager.getInstance().keys[KeyEvent.VK_A]) {
             //LEFT
@@ -159,7 +173,7 @@ public class Player extends Creature {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(animation.getCurrentFrame(), (int) xPos - GameCamera.getInstance().xOffset, (int) yPos - GameCamera.getInstance().yOffset, null);
+         g.drawImage(animation.getCurrentFrame(), (int) xPos - GameCamera.getInstance().xOffset, (int) yPos - GameCamera.getInstance().yOffset, null);
     }
 
     protected void checkOnGround() {

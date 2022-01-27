@@ -21,6 +21,7 @@ public class EntityManager {
         for (Entity e: entities) {
             e.tick();
         }
+        entities.removeIf(entity -> !entity.active);
     }
     public void render(Graphics g){
         player.render(g);

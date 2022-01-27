@@ -11,6 +11,7 @@ public abstract class Entity {
     protected int width, height;
     protected Rectangle hitBox;
     protected int health;
+    protected boolean active = true;
 
 
     public Entity(int xPos, int yPos, int width, int height) {
