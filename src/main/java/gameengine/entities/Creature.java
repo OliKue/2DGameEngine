@@ -10,8 +10,8 @@ public abstract class Creature extends Entity {
 
 
     //Movement
-    protected float xAcc =3, yAcc =3;
-    protected float xVel, yVel;
+    protected float xAcc =0, yAcc =0;
+    protected float xVel=0, yVel=0;
     protected float maxXVel=10,maxYVel=20;
 
     //Jumping
@@ -23,6 +23,9 @@ public abstract class Creature extends Entity {
 
     //Next Position
     protected float xNextPos, yNextPos;
+
+    // Life
+    protected int life = 100;
 
 
     public Creature(int x, int y, int width, int height) {
@@ -109,12 +112,6 @@ public abstract class Creature extends Entity {
         return collision;
     }
 
-    protected boolean collisionWithTile(int x, int y) {
-        // Fehler?
-        return World.getInstance().getTile(x / Tile.TILEWIDTH, y / Tile.TILEHEIGTH).isSolid();
-    }
-
-
 
     protected void slowDownX(){
         if((xVel >=0 && xVel <=0.2 )||(xVel <=0 && xVel >=-0.2)){
@@ -122,5 +119,15 @@ public abstract class Creature extends Entity {
         }else{
             xVel = xVel /1.3f;
         }
+    }
+
+    public void applyDmg(int dmg){
+        life -= dmg;
+        if(life<=0){
+            die();
+        }
+    }
+    public void die(){
+        active = false;
     }
 }

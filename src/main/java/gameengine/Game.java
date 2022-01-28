@@ -3,9 +3,9 @@ package gameengine;
 import gameengine.display.Display;
 import gameengine.entities.EntityManager;
 import gameengine.entities.Player;
+import gameengine.entities.enemies.Wraith;
 import gameengine.graphics.Assets;
 import gameengine.graphics.GameCamera;
-import gameengine.graphics.ImageLoader;
 import gameengine.input.KeyManager;
 import gameengine.tile.Tile;
 import gameengine.world.Background;
@@ -16,7 +16,10 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 
 public class Game implements Runnable {
+    public final static boolean DRAW_HITBOX = true;
 
+    public static int playerSpawnX = 250;
+    public static int playerSpawnY = World.getInstance().getHeight() * Tile.TILEHEIGTH - 48;
 
     public static int width = 1600, height = 900;
     public static String title = "gameengine.Game";
@@ -26,6 +29,7 @@ public class Game implements Runnable {
     private Thread thread;
 
     public GameStates gameState = GameStates.MENU;
+
     public enum GameStates {
         MENU,
         GAME
@@ -34,8 +38,12 @@ public class Game implements Runnable {
     public void init() {
         this.display = new Display(title, width, height);
 
-        EntityManager.setPlayer(new Player(48, World.getInstance().getHeight() * Tile.TILEHEIGTH - 48));
+        EntityManager.setPlayer(new Player(playerSpawnX, playerSpawnY));
 
+        EntityManager.getInstance().addEntity(new Wraith(48, World.getInstance().getHeight() * Tile.TILEHEIGTH - 100));
+
+
+//        EntityManager.getInstance().addEntity(new Wraith(300, World.getInstance().getHeight() * Tile.TILEHEIGTH - 300));
     }
 
     @Override
@@ -83,6 +91,7 @@ public class Game implements Runnable {
 
     private void tick() {
 
+
         switch (gameState) {
             case GAME:
                 GameCamera.getInstance().tick();
@@ -92,14 +101,14 @@ public class Game implements Runnable {
                 //Change to Menu
                 if (KeyManager.getInstance().escapeReleased) {
                     gameState = GameStates.MENU;
-                    KeyManager.getInstance().escapeReleased=false;
+                    KeyManager.getInstance().escapeReleased = false;
                 }
                 break;
             case MENU:
                 //Change to Game
                 if (KeyManager.getInstance().escapeReleased || KeyManager.getInstance().keys[KeyEvent.VK_P]) {
                     gameState = GameStates.GAME;
-                    KeyManager.getInstance().escapeReleased=false;
+                    KeyManager.getInstance().escapeReleased = false;
                 }
                 break;
         }
