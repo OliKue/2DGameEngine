@@ -22,13 +22,15 @@ public class Player extends Creature {
     private final Animation animation_run_right = new Animation(100, Assets.getInstance().mage_run_right);
     private final Animation animation_jump_right = new Animation(50, Assets.getInstance().mage_jump_right);
     private final Animation animation_jump_left = new Animation(50, Assets.getInstance().mage_jump_left);
-
+    private final Animation animation_attack_right = new Animation(100, Assets.getInstance().mage_attack_right);
+    private final Animation animation_attack_left = new Animation(100, Assets.getInstance().mage_attack_left);
 
     private Animation animation = animation_idle_right;
 
-    private int attack_cd = 30;
-    private int attack_cdCount=0;
-    private boolean attack_rdy=true;
+    private int attack_cd = 35;
+    private int attack_cdCount = 0;
+    private boolean attack_rdy = true;
+    private boolean attacking = false;
 
     public Player(int x, int y) {
         super(x, y, 128, 128);
@@ -53,6 +55,8 @@ public class Player extends Creature {
         animations.add(animation_run_right);
         animations.add(animation_jump_right);
         animations.add(animation_jump_left);
+        animations.add(animation_attack_left);
+        animations.add(animation_attack_right);
     }
 
     @Override
@@ -71,11 +75,14 @@ public class Player extends Creature {
         }
 
         // Attack cooldown
-        if(!attack_rdy){
+        if (!attack_rdy) {
             attack_cdCount++;
-            if(attack_cd<attack_cdCount){
-                attack_rdy=true;
-                attack_cdCount=0;
+            if (attack_cd < attack_cdCount) {
+                attack_rdy = true;
+                attack_cdCount = 0;
+                attacking=false;
+                EntityManager.getInstance().addEntity(new FireBow((int) xPos, (int) yPos, facingLeft));
+                updateAnimation();
             }
         }
         getInput();
@@ -92,7 +99,13 @@ public class Player extends Creature {
     }
 
     private void updateAnimation() {
-        if (jumping) {
+        if (attacking) {
+            if (facingLeft) {
+                animation = animation_attack_left;
+            } else {
+                animation = animation_attack_right;
+            }
+        } else if (jumping) {
             if (facingLeft) {
                 animation = animation_jump_left;
             } else {
@@ -115,8 +128,7 @@ public class Player extends Creature {
         animation.tick();
 
         //Reset inactive
-        for (
-                Animation a : animations) {
+        for (Animation a : animations) {
             if (!(a == animation)) {
                 a.reset();
             }
@@ -128,8 +140,9 @@ public class Player extends Creature {
 
         //Attack
         if (KeyManager.getInstance().keys[KeyEvent.VK_E] && attack_rdy) {
-            attack_rdy=false;
-            EntityManager.getInstance().addEntity(new FireBow((int) xPos, (int) yPos, facingLeft));
+            attack_rdy = false;
+            attacking = true;
+
         }
         //JUMP
         if (KeyManager.getInstance().keys[KeyEvent.VK_SPACE] || KeyManager.getInstance().keys[KeyEvent.VK_W]) {
@@ -173,7 +186,7 @@ public class Player extends Creature {
 
     @Override
     public void render(Graphics g) {
-         g.drawImage(animation.getCurrentFrame(), (int) xPos - GameCamera.getInstance().xOffset, (int) yPos - GameCamera.getInstance().yOffset, null);
+        g.drawImage(animation.getCurrentFrame(), (int) xPos - GameCamera.getInstance().xOffset, (int) yPos - GameCamera.getInstance().yOffset, null);
     }
 
     protected void checkOnGround() {

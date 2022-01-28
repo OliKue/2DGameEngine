@@ -15,6 +15,8 @@ public class Assets {
     public BufferedImage[] mage_run_left = new BufferedImage[8];
     public BufferedImage[] mage_jump_left = new BufferedImage[7];
     public BufferedImage[] mage_jump_right = new BufferedImage[7];
+    public BufferedImage[] mage_attack_right = new BufferedImage[7];
+    public BufferedImage[] mage_attack_left = new BufferedImage[7];
 
     // Fire
     public BufferedImage[] fire_flying_left = new BufferedImage[4];
@@ -148,6 +150,23 @@ public class Assets {
         mage_jump_right[4] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump5.png");
         mage_jump_right[5] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump6.png");
         mage_jump_right[6] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump7.png");
+
+        mage_attack_right[0] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra0.png");
+        mage_attack_right[1] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra1.png");
+        mage_attack_right[2] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra2.png");
+        mage_attack_right[3] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra3.png");
+        mage_attack_right[4] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra4.png");
+        mage_attack_right[5] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra5.png");
+        mage_attack_right[6] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra6.png");
+
+        mage_attack_left[0] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extraL0.png");
+        mage_attack_left[1] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extraL1.png");
+        mage_attack_left[2] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extraL2.png");
+        mage_attack_left[3] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extraL3.png");
+        mage_attack_left[4] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extraL4.png");
+        mage_attack_left[5] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extraL5.png");
+        mage_attack_left[6] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extraL6.png");
+
     }
 
     public void initFireAnimations() {
