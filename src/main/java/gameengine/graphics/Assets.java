@@ -24,6 +24,17 @@ public class Assets {
     public BufferedImage[] fire_end_left = new BufferedImage[2];
     public BufferedImage[] fire_end_right = new BufferedImage[2];
 
+    // Mage
+    public BufferedImage[] wraith_01_idle_left = new BufferedImage[12];
+    public BufferedImage[] wraith_01_idle_right = new BufferedImage[12];
+    public BufferedImage[] wraith_01_walk_right = new BufferedImage[12];
+    public BufferedImage[] wraith_01_walk_left = new BufferedImage[12];
+    public BufferedImage[] wraith_01_dying_left = new BufferedImage[15];
+    public BufferedImage[] wraith_01_dying_right = new BufferedImage[15];
+    public BufferedImage[] wraith_01_attack_right = new BufferedImage[12];
+    public BufferedImage[] wraith_01_attack_left = new BufferedImage[12];
+
+
     //Tiles
     public BufferedImage tile12;
     public BufferedImage tile30;
@@ -185,5 +196,9 @@ public class Assets {
 
         fire_end_right[0] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra4.png");
         fire_end_right[1] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra5.png");
+    }
+
+    public void initWraith_01(){
+
     }
 }
