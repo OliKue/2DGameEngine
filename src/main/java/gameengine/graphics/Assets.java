@@ -1,5 +1,6 @@
 package gameengine.graphics;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Assets {
@@ -9,20 +10,24 @@ public class Assets {
     public BufferedImage menuScreen;
 
     // Mage
-    public BufferedImage[] mage_idle_left = new BufferedImage[25];
-    public BufferedImage[] mage_idle_right = new BufferedImage[25];
-    public BufferedImage[] mage_run_right = new BufferedImage[8];
-    public BufferedImage[] mage_run_left = new BufferedImage[8];
-    public BufferedImage[] mage_jump_left = new BufferedImage[7];
-    public BufferedImage[] mage_jump_right = new BufferedImage[7];
-    public BufferedImage[] mage_attack_right = new BufferedImage[7];
-    public BufferedImage[] mage_attack_left = new BufferedImage[7];
+    public BufferedImage[] mage_idle = new BufferedImage[25];
+    public BufferedImage[] mage_run = new BufferedImage[8];
+    public BufferedImage[] mage_jump = new BufferedImage[7];
+    public BufferedImage[] mage_attack = new BufferedImage[7];
+    public BufferedImage[] mage_hurt = new BufferedImage[4];
+    public BufferedImage[] mage_dying = new BufferedImage[10];
+
 
     // Fire
-    public BufferedImage[] fire_flying_left = new BufferedImage[4];
-    public BufferedImage[] fire_flying_right = new BufferedImage[4];
-    public BufferedImage[] fire_end_left = new BufferedImage[2];
-    public BufferedImage[] fire_end_right = new BufferedImage[2];
+    public BufferedImage[] fire_flying = new BufferedImage[4];
+    public BufferedImage[] fire_end = new BufferedImage[2];
+
+    // Mage
+    public BufferedImage[] wraith_01_idle = new BufferedImage[12];
+    public BufferedImage[] wraith_01_walk = new BufferedImage[12];
+    public BufferedImage[] wraith_01_dying = new BufferedImage[15];
+    public BufferedImage[] wraith_01_attack = new BufferedImage[12];
+
 
     //Tiles
     public BufferedImage tile12;
@@ -48,6 +53,7 @@ public class Assets {
         initTiles();
         initMageAnimations();
         initFireAnimations();
+        initWraith_01();
     }
 
     public void initTiles() {
@@ -63,127 +69,143 @@ public class Assets {
     public void initMageAnimations() {
 
 
-        mage_idle_right[0] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
-        mage_idle_right[1] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
-        mage_idle_right[2] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
-        mage_idle_right[3] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
-        mage_idle_right[4] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
-        mage_idle_right[5] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
-        mage_idle_right[6] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
-        mage_idle_right[7] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
-        mage_idle_right[8] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
-        mage_idle_right[9] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
-        mage_idle_right[10] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
-        mage_idle_right[11] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle1.png");
-        mage_idle_right[12] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle2.png");
-        mage_idle_right[13] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle3.png");
-        mage_idle_right[14] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle4.png");
-        mage_idle_right[15] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle5.png");
-        mage_idle_right[16] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle6.png");
-        mage_idle_right[17] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle7.png");
-        mage_idle_right[18] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle8.png");
-        mage_idle_right[19] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle9.png");
-        mage_idle_right[20] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle10.png");
-        mage_idle_right[21] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle11.png");
-        mage_idle_right[22] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle12.png");
-        mage_idle_right[23] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle13.png");
-        mage_idle_right[24] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
+        mage_idle[0] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
+        mage_idle[1] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
+        mage_idle[2] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
+        mage_idle[3] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
+        mage_idle[4] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
+        mage_idle[5] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
+        mage_idle[6] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
+        mage_idle[7] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
+        mage_idle[8] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
+        mage_idle[9] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
+        mage_idle[10] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
+        mage_idle[11] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle1.png");
+        mage_idle[12] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle2.png");
+        mage_idle[13] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle3.png");
+        mage_idle[14] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle4.png");
+        mage_idle[15] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle5.png");
+        mage_idle[16] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle6.png");
+        mage_idle[17] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle7.png");
+        mage_idle[18] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle8.png");
+        mage_idle[19] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle9.png");
+        mage_idle[20] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle10.png");
+        mage_idle[21] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle11.png");
+        mage_idle[22] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle12.png");
+        mage_idle[23] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle13.png");
+        mage_idle[24] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idle14.png");
 
 
-        mage_idle_left[0] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL14.png");
-        mage_idle_left[1] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL14.png");
-        mage_idle_left[2] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL14.png");
-        mage_idle_left[3] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL14.png");
-        mage_idle_left[4] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL14.png");
-        mage_idle_left[5] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL14.png");
-        mage_idle_left[6] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL14.png");
-        mage_idle_left[7] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL14.png");
-        mage_idle_left[8] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL14.png");
-        mage_idle_left[9] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL14.png");
-        mage_idle_left[10] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL14.png");
-        mage_idle_left[11] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL1.png");
-        mage_idle_left[12] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL2.png");
-        mage_idle_left[13] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL3.png");
-        mage_idle_left[14] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL4.png");
-        mage_idle_left[15] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL5.png");
-        mage_idle_left[16] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL6.png");
-        mage_idle_left[17] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL7.png");
-        mage_idle_left[18] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL8.png");
-        mage_idle_left[19] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL9.png");
-        mage_idle_left[20] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL10.png");
-        mage_idle_left[21] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL11.png");
-        mage_idle_left[22] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL12.png");
-        mage_idle_left[23] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL13.png");
-        mage_idle_left[24] = ImageLoader.loadImage("/PNG/Character/Mage/Idle/idleL14.png");
+        mage_run[0] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run1.png");
+        mage_run[1] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run2.png");
+        mage_run[2] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run3.png");
+        mage_run[3] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run4.png");
+        mage_run[4] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run5.png");
+        mage_run[5] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run6.png");
+        mage_run[6] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run7.png");
+        mage_run[7] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run8.png");
 
 
-        mage_run_right[0] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run1.png");
-        mage_run_right[1] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run2.png");
-        mage_run_right[2] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run3.png");
-        mage_run_right[3] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run4.png");
-        mage_run_right[4] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run5.png");
-        mage_run_right[5] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run6.png");
-        mage_run_right[6] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run7.png");
-        mage_run_right[7] = ImageLoader.loadImage("/PNG/Character/Mage/Run/run8.png");
+        mage_jump[0] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump1.png");
+        mage_jump[1] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump2.png");
+        mage_jump[2] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump3.png");
+        mage_jump[3] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump4.png");
+        mage_jump[4] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump5.png");
+        mage_jump[5] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump6.png");
+        mage_jump[6] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump7.png");
 
-        mage_run_left[0] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL1.png");
-        mage_run_left[1] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL2.png");
-        mage_run_left[2] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL3.png");
-        mage_run_left[3] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL4.png");
-        mage_run_left[4] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL5.png");
-        mage_run_left[5] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL6.png");
-        mage_run_left[6] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL7.png");
-        mage_run_left[7] = ImageLoader.loadImage("/PNG/Character/Mage/Run/runL8.png");
+        mage_attack[0] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra0.png");
+        mage_attack[1] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra1.png");
+        mage_attack[2] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra2.png");
+        mage_attack[3] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra3.png");
+        mage_attack[4] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra4.png");
+        mage_attack[5] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra5.png");
+        mage_attack[6] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra6.png");
 
-        mage_jump_left[0] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL1.png");
-        mage_jump_left[1] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL2.png");
-        mage_jump_left[2] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL3.png");
-        mage_jump_left[3] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL4.png");
-        mage_jump_left[4] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL5.png");
-        mage_jump_left[5] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL6.png");
-        mage_jump_left[6] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jumpL7.png");
+        mage_hurt[0] = ImageLoader.loadImage("/PNG/Character/Mage/Hurt/hurt1.png");
+        mage_hurt[1] = ImageLoader.loadImage("/PNG/Character/Mage/Hurt/hurt2.png");
+        mage_hurt[2] = ImageLoader.loadImage("/PNG/Character/Mage/Hurt/hurt3.png");
+        mage_hurt[3] = ImageLoader.loadImage("/PNG/Character/Mage/Hurt/hurt4.png");
 
-        mage_jump_right[0] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump1.png");
-        mage_jump_right[1] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump2.png");
-        mage_jump_right[2] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump3.png");
-        mage_jump_right[3] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump4.png");
-        mage_jump_right[4] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump5.png");
-        mage_jump_right[5] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump6.png");
-        mage_jump_right[6] = ImageLoader.loadImage("/PNG/Character/Mage/Jump/jump7.png");
-
-        mage_attack_right[0] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra0.png");
-        mage_attack_right[1] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra1.png");
-        mage_attack_right[2] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra2.png");
-        mage_attack_right[3] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra3.png");
-        mage_attack_right[4] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra4.png");
-        mage_attack_right[5] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra5.png");
-        mage_attack_right[6] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra6.png");
-
-        mage_attack_left[0] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extraL0.png");
-        mage_attack_left[1] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extraL1.png");
-        mage_attack_left[2] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extraL2.png");
-        mage_attack_left[3] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extraL3.png");
-        mage_attack_left[4] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extraL4.png");
-        mage_attack_left[5] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extraL5.png");
-        mage_attack_left[6] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extraL6.png");
-
+        mage_dying[0] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death1.png");
+        mage_dying[1] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death2.png");
+        mage_dying[2] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death3.png");
+        mage_dying[3] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death4.png");
+        mage_dying[4] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death5.png");
+        mage_dying[5] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death6.png");
+        mage_dying[6] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death7.png");
+        mage_dying[7] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death8.png");
+        mage_dying[8] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death9.png");
+        mage_dying[9] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death10.png");
     }
 
     public void initFireAnimations() {
-        fire_flying_left[0] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extraL1.png");
-        fire_flying_left[1] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extraL2.png");
-        fire_flying_left[2] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extraL3.png");
-        fire_flying_left[3] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extraL2.png");
 
-        fire_flying_right[0] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra1.png");
-        fire_flying_right[1] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra2.png");
-        fire_flying_right[2] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra3.png");
-        fire_flying_right[3] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra2.png");
+        fire_flying[0] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra1.png");
+        fire_flying[1] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra2.png");
+        fire_flying[2] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra3.png");
+        fire_flying[3] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra2.png");
 
-        fire_end_left[0] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extraL4.png");
-        fire_end_left[1] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extraL5.png");
 
-        fire_end_right[0] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra4.png");
-        fire_end_right[1] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra5.png");
+        fire_end[0] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra4.png");
+        fire_end[1] = ImageLoader.loadImage("/PNG/Character/Mage/Fire_Extra/fire_extra5.png");
+    }
+
+    public void initWraith_01() {
+        wraith_01_idle[0] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Idle/Wraith_01_Idle_000.png");
+        wraith_01_idle[1] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Idle/Wraith_01_Idle_001.png");
+        wraith_01_idle[2] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Idle/Wraith_01_Idle_002.png");
+        wraith_01_idle[3] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Idle/Wraith_01_Idle_003.png");
+        wraith_01_idle[4] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Idle/Wraith_01_Idle_004.png");
+        wraith_01_idle[5] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Idle/Wraith_01_Idle_005.png");
+        wraith_01_idle[6] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Idle/Wraith_01_Idle_006.png");
+        wraith_01_idle[7] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Idle/Wraith_01_Idle_007.png");
+        wraith_01_idle[8] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Idle/Wraith_01_Idle_008.png");
+        wraith_01_idle[9] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Idle/Wraith_01_Idle_009.png");
+        wraith_01_idle[10] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Idle/Wraith_01_Idle_010.png");
+        wraith_01_idle[11] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Idle/Wraith_01_Idle_011.png");
+
+        wraith_01_walk[0] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Walking/Wraith_01_Moving Forward_000.png");
+        wraith_01_walk[1] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Walking/Wraith_01_Moving Forward_001.png");
+        wraith_01_walk[2] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Walking/Wraith_01_Moving Forward_002.png");
+        wraith_01_walk[3] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Walking/Wraith_01_Moving Forward_003.png");
+        wraith_01_walk[4] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Walking/Wraith_01_Moving Forward_004.png");
+        wraith_01_walk[5] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Walking/Wraith_01_Moving Forward_005.png");
+        wraith_01_walk[6] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Walking/Wraith_01_Moving Forward_006.png");
+        wraith_01_walk[7] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Walking/Wraith_01_Moving Forward_007.png");
+        wraith_01_walk[8] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Walking/Wraith_01_Moving Forward_008.png");
+        wraith_01_walk[9] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Walking/Wraith_01_Moving Forward_009.png");
+        wraith_01_walk[10] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Walking/Wraith_01_Moving Forward_010.png");
+        wraith_01_walk[11] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Walking/Wraith_01_Moving Forward_011.png");
+
+        wraith_01_attack[0] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Attacking/Wraith_01_Attack_000.png");
+        wraith_01_attack[1] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Attacking/Wraith_01_Attack_001.png");
+        wraith_01_attack[2] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Attacking/Wraith_01_Attack_002.png");
+        wraith_01_attack[3] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Attacking/Wraith_01_Attack_003.png");
+        wraith_01_attack[4] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Attacking/Wraith_01_Attack_004.png");
+        wraith_01_attack[5] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Attacking/Wraith_01_Attack_005.png");
+        wraith_01_attack[6] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Attacking/Wraith_01_Attack_006.png");
+        wraith_01_attack[7] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Attacking/Wraith_01_Attack_007.png");
+        wraith_01_attack[8] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Attacking/Wraith_01_Attack_008.png");
+        wraith_01_attack[9] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Attacking/Wraith_01_Attack_009.png");
+        wraith_01_attack[10] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Attacking/Wraith_01_Attack_010.png");
+        wraith_01_attack[11] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Attacking/Wraith_01_Attack_011.png");
+
+        wraith_01_dying[0] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Dying/Wraith_01_Dying_000.png");
+        wraith_01_dying[1] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Dying/Wraith_01_Dying_001.png");
+        wraith_01_dying[2] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Dying/Wraith_01_Dying_002.png");
+        wraith_01_dying[3] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Dying/Wraith_01_Dying_003.png");
+        wraith_01_dying[4] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Dying/Wraith_01_Dying_004.png");
+        wraith_01_dying[5] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Dying/Wraith_01_Dying_005.png");
+        wraith_01_dying[6] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Dying/Wraith_01_Dying_006.png");
+        wraith_01_dying[7] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Dying/Wraith_01_Dying_007.png");
+        wraith_01_dying[8] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Dying/Wraith_01_Dying_008.png");
+        wraith_01_dying[9] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Dying/Wraith_01_Dying_009.png");
+        wraith_01_dying[10] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Dying/Wraith_01_Dying_010.png");
+        wraith_01_dying[11] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Dying/Wraith_01_Dying_011.png");
+        wraith_01_dying[12] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Dying/Wraith_01_Dying_012.png");
+        wraith_01_dying[13] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Dying/Wraith_01_Dying_013.png");
+        wraith_01_dying[14] = ImageLoader.loadImage("/PNG/Enemies/Wraith_01/Dying/Wraith_01_Dying_014.png");
+
     }
 }

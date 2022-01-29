@@ -1,5 +1,8 @@
 package gameengine.entities;
 
+import gameengine.tile.Tile;
+import gameengine.world.World;
+
 import java.awt.*;
 
 public abstract class Entity {
@@ -29,6 +32,11 @@ public abstract class Entity {
     public boolean checkEntityCollision(float xOffset, float yOffset){
         // TODO
         return false;}
+
+        protected boolean collisionWithTile(int x, int y) {
+        // Fehler?
+        return World.getInstance().getTile(x / Tile.TILEWIDTH, y / Tile.TILEHEIGTH).isSolid();
+    }
 
     public float getXPos() {
         return xPos;
@@ -63,7 +71,7 @@ public abstract class Entity {
     }
 
     public Rectangle getHitBox() {
-        return hitBox;
+        return new Rectangle((int) (xPos+hitBox.x),(int) ( yPos+ hitBox.y), hitBox.width, hitBox.height);
     }
 
     public void setHitBox(Rectangle hitBox) {

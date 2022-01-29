@@ -1,5 +1,9 @@
 package gameengine.entities;
 
+import gameengine.entities.enemies.Wraith;
+import gameengine.tile.Tile;
+import gameengine.world.World;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -7,6 +11,8 @@ public class EntityManager {
     private static final EntityManager OBJ = new EntityManager();
     private static Player player;
     private static ArrayList<Entity> entities = new ArrayList<>();
+
+    private static int enemyCounter =0;
 
     private EntityManager(){
     }
@@ -20,8 +26,14 @@ public class EntityManager {
 
         for (Entity e: entities) {
             e.tick();
+            if(!e.active && e instanceof Wraith){
+                enemyCounter--;
+            }
         }
         entities.removeIf(entity -> !entity.active);
+        if(enemyCounter<2){
+            addEntity(new Wraith((int) (player.xPos), (int) (player.yPos-200)));
+        }
     }
     public void render(Graphics g){
         player.render(g);
@@ -40,6 +52,9 @@ public class EntityManager {
     }
 
     public void addEntity(Entity e){
+        if(e instanceof Wraith){
+            enemyCounter++;
+        }
         entities.add(e);
     }
 
