@@ -14,6 +14,8 @@ public class Assets {
     public BufferedImage[] mage_run = new BufferedImage[8];
     public BufferedImage[] mage_jump = new BufferedImage[7];
     public BufferedImage[] mage_attack = new BufferedImage[7];
+    public BufferedImage[] mage_hurt = new BufferedImage[4];
+    public BufferedImage[] mage_dying = new BufferedImage[10];
 
 
     // Fire
@@ -120,7 +122,21 @@ public class Assets {
         mage_attack[5] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra5.png");
         mage_attack[6] = ImageLoader.loadImage("/PNG/Character/Mage/Attack_Extra/attack_extra6.png");
 
+        mage_hurt[0] = ImageLoader.loadImage("/PNG/Character/Mage/Hurt/hurt1.png");
+        mage_hurt[1] = ImageLoader.loadImage("/PNG/Character/Mage/Hurt/hurt2.png");
+        mage_hurt[2] = ImageLoader.loadImage("/PNG/Character/Mage/Hurt/hurt3.png");
+        mage_hurt[3] = ImageLoader.loadImage("/PNG/Character/Mage/Hurt/hurt4.png");
 
+        mage_dying[0] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death1.png");
+        mage_dying[1] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death2.png");
+        mage_dying[2] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death3.png");
+        mage_dying[3] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death4.png");
+        mage_dying[4] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death5.png");
+        mage_dying[5] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death6.png");
+        mage_dying[6] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death7.png");
+        mage_dying[7] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death8.png");
+        mage_dying[8] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death9.png");
+        mage_dying[9] = ImageLoader.loadImage("/PNG/Character/Mage/Death/death10.png");
     }
 
     public void initFireAnimations() {

@@ -31,6 +31,17 @@ public class Player extends Creature {
     private boolean attacking = false;
 
 
+    private boolean ending = false;
+    private int ticksUntilInactive = 50;
+    private int tickCount;
+    private final Animation animation_dying = new Animation(100, Assets.getInstance().mage_dying);
+
+    private boolean hurting = false;
+    private int ticksHurt = 20;
+    private int tickCountHurt;
+    private final Animation animation_hurting = new Animation(100, Assets.getInstance().mage_hurt);
+
+
     public Player(int x, int y) {
         super(x, y, 128, 128);
 
@@ -52,10 +63,34 @@ public class Player extends Creature {
         animations.add(animation_run);
         animations.add(animation_jump);
         animations.add(animation_attack);
+
+        this.life=20;
     }
 
     @Override
     public void tick() {
+        System.out.println("Life: "+ life);
+        if (ending) {
+            yVel = 0;
+            xVel = 0;
+            tickCount++;
+            if (tickCount > ticksUntilInactive) {
+               xPos = Game.playerSpawnX;
+               yPos = Game.playerSpawnY;
+               ending = false;
+               tickCount=0;
+               life=20;
+            }
+        }
+        if (hurting) {
+            tickCountHurt++;
+            if (tickCountHurt > ticksHurt) {
+                hurting = false;
+                tickCountHurt=0;
+            }
+        }
+
+
         checkOnGround();
         // Movement
         if (falling || jumping) {
@@ -96,7 +131,11 @@ public class Player extends Creature {
     }
 
     private void updateAnimation() {
-        if (attacking) {
+        if(ending){
+            animation = animation_dying;
+        }else if(hurting){
+            animation = animation_hurting;
+        }else if (attacking) {
             animation = animation_attack;
         } else if (jumping) {
             animation = animation_jump;
@@ -175,8 +214,8 @@ public class Player extends Creature {
         } else {
             g.drawImage(animation.getCurrentFrame(), x, y, width, height, null);
         }
-        if(Game.DRAW_HITBOX){
-            g.drawRect(x+hitBox.x,y+hitBox.y, hitBox.width,hitBox.height);
+        if (Game.DRAW_HITBOX) {
+            g.drawRect(x + hitBox.x, y + hitBox.y, hitBox.width, hitBox.height);
         }
     }
 
@@ -192,7 +231,13 @@ public class Player extends Creature {
 
     @Override
     public void die() {
-        xPos = Game.playerSpawnX;
-        yPos = Game.playerSpawnY;
+        ending = true;
+
+    }
+
+    @Override
+    public void applyDmg(int dmg) {
+        super.applyDmg(dmg);
+        hurting = true;
     }
 }

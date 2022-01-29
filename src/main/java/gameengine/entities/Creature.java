@@ -120,6 +120,13 @@ public abstract class Creature extends Entity {
             xVel = xVel /1.3f;
         }
     }
+    protected void slowDownY(){
+        if((yVel >=0 && yVel <=0.2 )||(yVel <=0 && yVel >=-0.2)){
+            yVel =0;
+        }else{
+            yVel = yVel /1.3f;
+        }
+    }
 
     public void applyDmg(int dmg){
         life -= dmg;

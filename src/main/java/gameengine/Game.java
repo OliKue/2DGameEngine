@@ -19,7 +19,7 @@ public class Game implements Runnable {
     public final static boolean DRAW_HITBOX = true;
 
     public static int playerSpawnX = 250;
-    public static int playerSpawnY = World.getInstance().getHeight() * Tile.TILEHEIGTH - 48;
+    public static int playerSpawnY = World.getInstance().getHeight() * Tile.TILEHEIGTH - 200;
 
     public static int width = 1600, height = 900;
     public static String title = "gameengine.Game";
