@@ -3,9 +3,7 @@ package gameengine.world;
 import gameengine.tile.Tile;
 import gameengine.tile.TileHandler;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class World {
 
@@ -17,8 +15,8 @@ public class World {
     private int[][] tiles;
 
     private World() {
-        String path = World.class.getResource("/world.txt").getPath();
-        loadWorld(path);
+        InputStream inputStream = World.class.getResourceAsStream("/world.txt");
+        loadWorld(inputStream);
     }
 
     public static World getInstance() {
@@ -45,8 +43,8 @@ public class World {
 
     }
 
-    private void loadWorld(String path) {
-        String file = loadFileAsString(path);
+    private void loadWorld(InputStream inputStream) {
+        String file = loadFileAsString(inputStream);
         String[] tokens = file.split("\\s+");
         width = Integer.parseInt(tokens[0]);
         height = Integer.parseInt(tokens[1]);
@@ -59,11 +57,12 @@ public class World {
         }
     }
 
-    public static String loadFileAsString(String path) {
+    public static String loadFileAsString(InputStream inputStream) {
         StringBuilder builder = new StringBuilder();
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(path));
+            InputStreamReader inStreamReader = new InputStreamReader(inputStream);
+            BufferedReader br = new BufferedReader(inStreamReader);
             String line;
 
             while ((line = br.readLine()) != null) {
