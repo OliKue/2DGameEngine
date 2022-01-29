@@ -3,7 +3,7 @@ package gameengine.graphics;
 import gameengine.Game;
 import gameengine.entities.Entity;
 import gameengine.tile.Tile;
-import gameengine.world.World;
+import gameengine.world.WorldManager;
 
 import java.awt.*;
 
@@ -23,7 +23,7 @@ public class GameCamera {
 
     public void centerOnEntity(Entity e){
         xOffset = (int) (e.getXPos() - Game.width /2 + e.getWidth());
-        yOffset = (int) (e.getYPos() - Game.height /2 +e.getHeight());
+        yOffset = (int) (e.getYPos() - Game.height *3/4 +e.getHeight());
 
 //        System.out.println("Pla x|y: "+e.getX()+" | "+ e.getY());
 //        System.out.println("Cam x|y: "+xOffset+" | "+ yOffset);
@@ -51,7 +51,7 @@ public class GameCamera {
         for (int y = yStart; y < yEnd; y++) {
             for (int x = xStart; x < xEnd; x++) {
 
-                World.getInstance().getTile(x, y).render(g, x * Tile.TILEWIDTH- GameCamera.getInstance().xOffset, y * Tile.TILEHEIGTH-GameCamera.getInstance().yOffset);
+                WorldManager.getInstance().getTile(x, y).render(g, x * Tile.TILEWIDTH- GameCamera.getInstance().xOffset, y * Tile.TILEHEIGTH-GameCamera.getInstance().yOffset);
             }
         }
 

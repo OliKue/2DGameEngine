@@ -16,7 +16,7 @@ public class Background {
         this.background = ImageLoader.loadImage("/PNG/Backgrounds/Cartoon_Forest_BG_01/Cartoon_Forest_BG_01.png");
     }
 
-    ;
+
 
     public static Background getInstance() {
         return OBJ;
@@ -31,8 +31,8 @@ public class Background {
     }
 
     private void calculateToDrawBackground() {
-        float maxPixX = World.getInstance().getWidth() * Tile.TILEWIDTH;
-        float maxPixY = World.getInstance().getHeight() * Tile.TILEHEIGTH;
+        float maxPixX = WorldManager.getInstance().getWidth() * Tile.TILEWIDTH;
+        float maxPixY = WorldManager.getInstance().getHeight() * Tile.TILEHEIGTH;
 
         float playerX = EntityManager.getInstance().getPlayerHitboxXPos();
         float playerY = EntityManager.getInstance().getPlayerHitboxYPos();

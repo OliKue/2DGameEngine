@@ -6,7 +6,9 @@ C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\tile\GrassTileRi.j
 C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\tile\DirtTileMi.java
 C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\entities\Entity.java
 C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\tile\GrassTileMi.java
+C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\graphics\Text.java
 C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\world\World.java
+C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\display\Menu.java
 C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\graphics\ImageLoader.java
 C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\entities\EntityManager.java
 C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\graphics\GameCamera.java
@@ -21,6 +23,7 @@ C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\graphics\Animation
 C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\display\Display.java
 C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\graphics\Assets.java
 C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\entities\Creature.java
+C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\graphics\FontLoader.java
 C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\tile\TileHandler.java
 C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\tile\Tile.java
 C:\Users\olive\gitrepos\2DGameEngine\src\main\java\gameengine\entities\projectiles\FireBow.java

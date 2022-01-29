@@ -5,21 +5,21 @@ import gameengine.tile.TileHandler;
 
 import java.io.*;
 
-public class World {
+public class WorldManager {
 
-    private static final World OBJ = new World();
+    private static final WorldManager OBJ = new WorldManager();
 
     private int width = 160;
     private int height = 9;
 
     private int[][] tiles;
 
-    private World() {
-        InputStream inputStream = World.class.getResourceAsStream("/world.txt");
+    private WorldManager() {
+        InputStream inputStream = WorldManager.class.getResourceAsStream("/worlds/world.txt");
         loadWorld(inputStream);
     }
 
-    public static World getInstance() {
+    public static WorldManager getInstance() {
         return OBJ;
     }
 

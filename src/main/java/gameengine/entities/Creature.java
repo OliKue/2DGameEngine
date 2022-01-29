@@ -1,7 +1,6 @@
 package gameengine.entities;
 
 import gameengine.tile.Tile;
-import gameengine.world.World;
 
 public abstract class Creature extends Entity {
 

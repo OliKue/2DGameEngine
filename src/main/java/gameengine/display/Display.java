@@ -1,6 +1,7 @@
 package gameengine.display;
 
 import gameengine.input.KeyManager;
+import gameengine.input.MouseManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +22,8 @@ public class Display {
         createDisplay();
 
         canvas.addKeyListener(KeyManager.getInstance());
+        canvas.addMouseListener(MouseManager.getInstance());
+        canvas.addMouseMotionListener(MouseManager.getInstance());
     }
 
     private void createDisplay() {

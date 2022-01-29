@@ -1,7 +1,7 @@
 package gameengine.entities;
 
 import gameengine.tile.Tile;
-import gameengine.world.World;
+import gameengine.world.WorldManager;
 
 import java.awt.*;
 
@@ -35,7 +35,7 @@ public abstract class Entity {
 
         protected boolean collisionWithTile(int x, int y) {
         // Fehler?
-        return World.getInstance().getTile(x / Tile.TILEWIDTH, y / Tile.TILEHEIGTH).isSolid();
+        return WorldManager.getInstance().getTile(x / Tile.TILEWIDTH, y / Tile.TILEHEIGTH).isSolid();
     }
 
     public float getXPos() {

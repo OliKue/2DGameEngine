@@ -69,7 +69,6 @@ public class Player extends Creature {
 
     @Override
     public void tick() {
-        System.out.println("Life: "+ life);
         if (ending) {
             yVel = 0;
             xVel = 0;

@@ -38,6 +38,10 @@ public class Assets {
     public BufferedImage tile53;
     public BufferedImage tile55;
 
+    // Fonts
+    public Font font28;
+    public Font font56;
+
 
     private Assets() {
         this.init();
@@ -49,6 +53,9 @@ public class Assets {
 
     public void init() {
         menuScreen = ImageLoader.loadImage("/PNG/Menuscreen/Background.png");
+
+        font28 = FontLoader.loadFont(Assets.class.getResource("/fonts/Silkscreen/slkscr.ttf").getPath(),28);
+        font56 = FontLoader.loadFont(Assets.class.getResource("/fonts/Silkscreen/slkscr.ttf").getPath(),56);
 
         initTiles();
         initMageAnimations();

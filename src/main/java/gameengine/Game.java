@@ -1,25 +1,25 @@
 package gameengine;
 
 import gameengine.display.Display;
+import gameengine.display.Menu;
 import gameengine.entities.EntityManager;
 import gameengine.entities.Player;
 import gameengine.entities.enemies.Wraith;
-import gameengine.graphics.Assets;
 import gameengine.graphics.GameCamera;
 import gameengine.input.KeyManager;
 import gameengine.tile.Tile;
 import gameengine.world.Background;
-import gameengine.world.World;
+import gameengine.world.WorldManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 
 public class Game implements Runnable {
-    public final static boolean DRAW_HITBOX = true;
+    public final static boolean DRAW_HITBOX = false;
 
     public static int playerSpawnX = 250;
-    public static int playerSpawnY = World.getInstance().getHeight() * Tile.TILEHEIGTH - 200;
+    public static int playerSpawnY = WorldManager.getInstance().getHeight() * Tile.TILEHEIGTH - 200;
 
     public static int width = 1600, height = 900;
     public static String title = "gameengine.Game";
@@ -40,7 +40,7 @@ public class Game implements Runnable {
 
         EntityManager.setPlayer(new Player(playerSpawnX, playerSpawnY));
 
-        EntityManager.getInstance().addEntity(new Wraith(48, World.getInstance().getHeight() * Tile.TILEHEIGTH - 100));
+        EntityManager.getInstance().addEntity(new Wraith(48, WorldManager.getInstance().getHeight() * Tile.TILEHEIGTH - 150));
 
 
 //        EntityManager.getInstance().addEntity(new Wraith(300, World.getInstance().getHeight() * Tile.TILEHEIGTH - 300));
@@ -105,6 +105,7 @@ public class Game implements Runnable {
                 }
                 break;
             case MENU:
+                Menu.getInstance().tick(this);
                 //Change to Game
                 if (KeyManager.getInstance().escapeReleased || KeyManager.getInstance().keys[KeyEvent.VK_P]) {
                     gameState = GameStates.GAME;
@@ -136,7 +137,8 @@ public class Game implements Runnable {
                 EntityManager.getInstance().render(g);
                 break;
             case MENU:
-                g.drawImage(Assets.getInstance().menuScreen, 0, 0, null);
+                Menu.getInstance().render(g);
+
                 break;
 
         }

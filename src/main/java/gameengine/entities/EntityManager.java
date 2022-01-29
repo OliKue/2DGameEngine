@@ -1,8 +1,6 @@
 package gameengine.entities;
 
 import gameengine.entities.enemies.Wraith;
-import gameengine.tile.Tile;
-import gameengine.world.World;
 
 import java.awt.*;
 import java.util.ArrayList;
