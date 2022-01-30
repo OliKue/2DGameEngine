@@ -31,8 +31,8 @@ public class Background {
     }
 
     private void calculateToDrawBackground() {
-        float maxPixX = WorldManager.getInstance().getWidth() * Tile.TILEWIDTH;
-        float maxPixY = WorldManager.getInstance().getHeight() * Tile.TILEHEIGTH;
+        float maxPixX = WorldManager.getInstance().getActiveWorld().getWidth() * Tile.TILEWIDTH;
+        float maxPixY = WorldManager.getInstance().getActiveWorld().getHeight() * Tile.TILEHEIGTH;
 
         float playerX = EntityManager.getInstance().getPlayerHitboxXPos();
         float playerY = EntityManager.getInstance().getPlayerHitboxYPos();

@@ -8,6 +8,7 @@ import gameengine.entities.Player;
 import gameengine.graphics.Animation;
 import gameengine.graphics.Assets;
 import gameengine.graphics.GameCamera;
+import gameengine.world.WorldManager;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -36,8 +37,8 @@ public class Wraith extends Creature {
 
     private boolean facingLeft = false;
 
-    public Wraith(int x, int y) {
-        super(x, y, 130, 105);
+    public Wraith(int x, int y, WorldManager.WorldKey world) {
+        super(x, y, Assets.getInstance().wraith_01_idle[0].getWidth(), Assets.getInstance().wraith_01_idle[0].getHeight(), world);
 
         //Hitbox
         this.hitBox.x = 36;

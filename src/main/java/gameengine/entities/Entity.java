@@ -7,6 +7,8 @@ import java.awt.*;
 
 public abstract class Entity {
 
+    public WorldManager.WorldKey world;
+
     public static final int DEFAULT_HEALTH = 5;
     public static final float GRAVITY = 2f;
 
@@ -17,13 +19,14 @@ public abstract class Entity {
     protected boolean active = true;
 
 
-    public Entity(int xPos, int yPos, int width, int height) {
+    public Entity(int xPos, int yPos, int width, int height, WorldManager.WorldKey world) {
         health = DEFAULT_HEALTH;
         this.xPos = xPos;
         this.yPos = yPos;
         this.width = width;
         this.height = height;
         this.hitBox = new Rectangle(xPos, yPos,width,height);
+        this.world = world;
     }
 
     public abstract void tick();

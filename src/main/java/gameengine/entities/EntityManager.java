@@ -1,6 +1,7 @@
 package gameengine.entities;
 
 import gameengine.entities.enemies.Wraith;
+import gameengine.world.WorldManager;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -23,14 +24,20 @@ public class EntityManager {
         player.tick();
 
         for (Entity e: entities) {
-            e.tick();
-            if(!e.active && e instanceof Wraith){
-                enemyCounter--;
+            if(e.world == WorldManager.getInstance().getActiveWorldKey()) {
+                e.tick();
+                if (!e.active && e instanceof Wraith) {
+                    enemyCounter--;
+                }
             }
         }
+        // Remove inactive
         entities.removeIf(entity -> !entity.active);
+
+
+        //Add Enemy manager
         if(enemyCounter<2){
-            addEntity(new Wraith((int) (player.xPos), (int) (player.yPos-200)));
+            addEntity(new Wraith((int) (player.xPos), (int) (player.yPos-200), player.world));
         }
     }
     public void render(Graphics g){

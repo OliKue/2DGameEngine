@@ -6,6 +6,7 @@ import gameengine.entities.Entity;
 import gameengine.graphics.Animation;
 import gameengine.graphics.GameCamera;
 import gameengine.tile.Tile;
+import gameengine.world.WorldManager;
 
 import java.awt.*;
 
@@ -24,8 +25,8 @@ public abstract class Projectile extends Entity {
     //Next Position
     protected float xNextPos, yNextPos;
 
-    public Projectile(int x, int y, int width, int height,boolean facingLeft) {
-        super(x, y, width, height);
+    public Projectile(int x, int y, int width, int height, boolean facingLeft, WorldManager.WorldKey world) {
+        super(x, y, width, height, world);
         this.facingLeft=facingLeft;
     }
 

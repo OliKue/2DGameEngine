@@ -7,6 +7,7 @@ import gameengine.graphics.Animation;
 import gameengine.graphics.Assets;
 import gameengine.graphics.GameCamera;
 import gameengine.input.KeyManager;
+import gameengine.world.WorldManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -42,8 +43,8 @@ public class Player extends Creature {
     private final Animation animation_hurting = new Animation(100, Assets.getInstance().mage_hurt);
 
 
-    public Player(int x, int y) {
-        super(x, y, 128, 128);
+    public Player(int x, int y, WorldManager.WorldKey world) {
+        super(x, y, Assets.getInstance().mage_idle[0].getWidth(), Assets.getInstance().mage_idle[0].getHeight(), world);
 
         //Hitbox
         this.hitBox.x = 41;
@@ -110,7 +111,7 @@ public class Player extends Creature {
                 attack_rdy = true;
                 attack_cdCount = 0;
                 attacking = false;
-                EntityManager.getInstance().addEntity(new FireBow((int) xPos, (int) yPos, facingLeft));
+                EntityManager.getInstance().addEntity(new FireBow((int) xPos, (int) yPos, facingLeft, world));
                 updateAnimation();
             }
         }
@@ -238,5 +239,10 @@ public class Player extends Creature {
     public void applyDmg(int dmg) {
         super.applyDmg(dmg);
         hurting = true;
+    }
+
+    public void teleport(int x, int y){
+        xPos=x;
+        yPos=y;
     }
 }

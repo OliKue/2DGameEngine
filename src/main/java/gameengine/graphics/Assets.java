@@ -43,6 +43,9 @@ public class Assets {
     public Font font56;
 
 
+    public BufferedImage[] portal_door = new BufferedImage[1];
+
+
     private Assets() {
         this.init();
     }
@@ -56,6 +59,8 @@ public class Assets {
 
         font28 = FontLoader.loadFont(Assets.class.getResource("/fonts/Silkscreen/slkscr.ttf").getPath(),28);
         font56 = FontLoader.loadFont(Assets.class.getResource("/fonts/Silkscreen/slkscr.ttf").getPath(),56);
+
+        portal_door[0] = ImageLoader.loadImage("/PNG/Objects/door4.png");
 
         initTiles();
         initMageAnimations();

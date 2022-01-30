@@ -19,7 +19,7 @@ public class Game implements Runnable {
     public final static boolean DRAW_HITBOX = false;
 
     public static int playerSpawnX = 250;
-    public static int playerSpawnY = WorldManager.getInstance().getHeight() * Tile.TILEHEIGTH - 200;
+    public static int playerSpawnY = WorldManager.getInstance().getActiveWorld().getHeight() * Tile.TILEHEIGTH - 200;
 
     public static int width = 1600, height = 900;
     public static String title = "gameengine.Game";
@@ -38,9 +38,9 @@ public class Game implements Runnable {
     public void init() {
         this.display = new Display(title, width, height);
 
-        EntityManager.setPlayer(new Player(playerSpawnX, playerSpawnY));
+        EntityManager.setPlayer(new Player(playerSpawnX, playerSpawnY, WorldManager.getInstance().getActiveWorldKey()));
 
-        EntityManager.getInstance().addEntity(new Wraith(48, WorldManager.getInstance().getHeight() * Tile.TILEHEIGTH - 150));
+        EntityManager.getInstance().addEntity(new Wraith(48, WorldManager.getInstance().getActiveWorld().getHeight() * Tile.TILEHEIGTH - 150, WorldManager.getInstance().getActiveWorldKey()));
 
 
 //        EntityManager.getInstance().addEntity(new Wraith(300, World.getInstance().getHeight() * Tile.TILEHEIGTH - 300));
@@ -87,7 +87,6 @@ public class Game implements Runnable {
         }
         stop();
     }
-
 
     private void tick() {
 

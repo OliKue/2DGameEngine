@@ -1,87 +1,54 @@
 package gameengine.world;
 
+import gameengine.entities.EntityManager;
+import gameengine.entities.staticEntities.Portal;
 import gameengine.tile.Tile;
-import gameengine.tile.TileHandler;
 
-import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WorldManager {
 
     private static final WorldManager OBJ = new WorldManager();
 
-    private int width = 160;
-    private int height = 9;
+    private Map<WorldKey, World> worldMap = new HashMap<>();
+    private WorldKey activeWorld = WorldKey.firstWorld;
 
-    private int[][] tiles;
+    public enum WorldKey {
+        firstWorld,
+        secondWorld
+    }
 
     private WorldManager() {
-        InputStream inputStream = WorldManager.class.getResourceAsStream("/worlds/world.txt");
-        loadWorld(inputStream);
+        World firstWorld = new World("/worlds/firstWorld.txt");
+        worldMap.put(WorldKey.firstWorld, firstWorld);
+        World secondWorld = new World("/worlds/secondWorld.txt");
+        worldMap.put(WorldKey.secondWorld, secondWorld);
+
+        Portal firstToSecond = new Portal(firstWorld.getWidth() * Tile.TILEWIDTH - 100, firstWorld.getHeight()* Tile.TILEHEIGTH - 60-48, WorldKey.firstWorld, WorldKey.secondWorld, 250, secondWorld.getHeight() * Tile.TILEHEIGTH - 200);
+        EntityManager.getInstance().addEntity(firstToSecond);
+
+        Portal secondToFirst = new Portal(secondWorld.getWidth() * Tile.TILEWIDTH - 100, secondWorld.getHeight()* Tile.TILEHEIGTH - 60-48, WorldKey.secondWorld, WorldKey.firstWorld, 250, firstWorld.getHeight() * Tile.TILEHEIGTH - 200);
+        EntityManager.getInstance().addEntity(secondToFirst);
     }
 
     public static WorldManager getInstance() {
         return OBJ;
     }
 
-
     public Tile getTile(int x, int y) {
-
-        if (x < 0 || x >= width) {
-            return TileHandler.getInstance().dirtTileMi;
-        }
-        if (y < 0 || y >= height) {
-            return TileHandler.getInstance().dirtTileMi;
-        }
-
-        Tile t = TileHandler.getInstance().tiles[tiles[x][y]];
-        if (t == null) {
-            //TODO: Throw Error
-            return TileHandler.getInstance().airTile;
-        } else {
-            return t;
-        }
-
+        return worldMap.get(activeWorld).getTile(x, y);
     }
 
-    private void loadWorld(InputStream inputStream) {
-        String file = loadFileAsString(inputStream);
-        String[] tokens = file.split("\\s+");
-        width = Integer.parseInt(tokens[0]);
-        height = Integer.parseInt(tokens[1]);
-        tiles= new int[width][height];
-
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                tiles[x][y] = Integer.parseInt(tokens[2+(x + y * width)]);
-            }
-        }
+    public World getActiveWorld() {
+        return worldMap.get(activeWorld);
     }
 
-    public static String loadFileAsString(InputStream inputStream) {
-        StringBuilder builder = new StringBuilder();
-
-        try {
-            InputStreamReader inStreamReader = new InputStreamReader(inputStream);
-            BufferedReader br = new BufferedReader(inStreamReader);
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                builder.append(line).append(System.lineSeparator());
-            }
-            br.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return builder.toString();
+    public WorldKey getActiveWorldKey() {
+        return activeWorld;
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
+    public void changeWorld(WorldKey key) {
+        activeWorld = key;
     }
 }

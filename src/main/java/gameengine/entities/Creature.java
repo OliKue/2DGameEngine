@@ -1,6 +1,7 @@
 package gameengine.entities;
 
 import gameengine.tile.Tile;
+import gameengine.world.WorldManager;
 
 public abstract class Creature extends Entity {
 
@@ -27,8 +28,8 @@ public abstract class Creature extends Entity {
     protected int life = 100;
 
 
-    public Creature(int x, int y, int width, int height) {
-        super(x, y, width, height);
+    public Creature(int x, int y, int width, int height, WorldManager.WorldKey world) {
+        super(x, y, width, height, world);
 
     }
 

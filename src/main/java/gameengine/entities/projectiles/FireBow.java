@@ -6,6 +6,7 @@ import gameengine.entities.EntityManager;
 import gameengine.graphics.Animation;
 import gameengine.graphics.Assets;
 import gameengine.tile.Tile;
+import gameengine.world.WorldManager;
 
 public class FireBow extends Projectile {
 
@@ -17,8 +18,8 @@ public class FireBow extends Projectile {
     private final Animation fire_end = new Animation(100, Assets.getInstance().fire_end);;
 
 
-    public FireBow(int x, int y, boolean facingLeft) {
-        super(x, y, 128, 128, facingLeft);
+    public FireBow(int x, int y, boolean facingLeft, WorldManager.WorldKey world) {
+        super(x, y, 128, 128, facingLeft, world);
 
         this.animation = this.fire_flying;
 
