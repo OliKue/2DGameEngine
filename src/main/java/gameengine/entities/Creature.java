@@ -137,4 +137,19 @@ public abstract class Creature extends Entity {
     public void die(){
         active = false;
     }
+
+    protected void checkOnGround() {
+        int ty = (int) (yPos + hitBox.y + hitBox.height + 1);
+        if (isCollisionVertical(ty)) {
+            jumping = false;
+            falling = false;
+        } else {
+            falling = true;
+        }
+    }
+
+    public void teleport(int x, int y){
+        xPos=x;
+        yPos=y;
+    }
 }
