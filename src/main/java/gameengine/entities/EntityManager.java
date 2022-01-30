@@ -43,8 +43,11 @@ public class EntityManager {
     public void render(Graphics g){
         player.render(g);
 
+
         for (Entity e: entities) {
-            e.render(g);
+            if(e.world == WorldManager.getInstance().getActiveWorldKey()) {
+                e.render(g);
+            }
         }
     }
 

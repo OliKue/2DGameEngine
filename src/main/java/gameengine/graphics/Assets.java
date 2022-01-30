@@ -57,8 +57,8 @@ public class Assets {
     public void init() {
         menuScreen = ImageLoader.loadImage("/PNG/Menuscreen/Background.png");
 
-        font28 = FontLoader.loadFont(Assets.class.getResource("/fonts/Silkscreen/slkscr.ttf").getPath(),28);
-        font56 = FontLoader.loadFont(Assets.class.getResource("/fonts/Silkscreen/slkscr.ttf").getPath(),56);
+        font28 = FontLoader.loadFont(Assets.class.getResourceAsStream("/fonts/Silkscreen/slkscr.ttf"),28);
+        font56 = FontLoader.loadFont(Assets.class.getResourceAsStream("/fonts/Silkscreen/slkscr.ttf"),56);
 
         portal_door[0] = ImageLoader.loadImage("/PNG/Objects/door4.png");
 
