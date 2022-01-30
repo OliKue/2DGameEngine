@@ -219,16 +219,6 @@ public class Player extends Creature {
         }
     }
 
-    protected void checkOnGround() {
-        int ty = (int) (yPos + hitBox.y + hitBox.height + 1);
-        if (isCollisionVertical(ty)) {
-            jumping = false;
-            falling = false;
-        } else {
-            falling = true;
-        }
-    }
-
     @Override
     public void die() {
         ending = true;
@@ -239,10 +229,5 @@ public class Player extends Creature {
     public void applyDmg(int dmg) {
         super.applyDmg(dmg);
         hurting = true;
-    }
-
-    public void teleport(int x, int y){
-        xPos=x;
-        yPos=y;
     }
 }
