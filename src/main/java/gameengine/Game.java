@@ -1,6 +1,7 @@
 package gameengine;
 
 import gameengine.display.Display;
+import gameengine.display.Interface;
 import gameengine.display.Menu;
 import gameengine.entities.EntityManager;
 import gameengine.entities.Player;
@@ -96,7 +97,7 @@ public class Game implements Runnable {
                 GameCamera.getInstance().tick();
                 EntityManager.getInstance().tick();
                 Background.getInstance().tick();
-
+                Interface.getInstance().tick();
                 //Change to Menu
                 if (KeyManager.getInstance().escapeReleased) {
                     gameState = GameStates.MENU;
@@ -134,6 +135,7 @@ public class Game implements Runnable {
                 Background.getInstance().render(g);
                 GameCamera.getInstance().render(g);
                 EntityManager.getInstance().render(g);
+                Interface.getInstance().render(g);
                 break;
             case MENU:
                 Menu.getInstance().render(g);

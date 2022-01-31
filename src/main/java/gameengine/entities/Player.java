@@ -1,6 +1,7 @@
 package gameengine.entities;
 
 import gameengine.Game;
+import gameengine.display.Interface;
 import gameengine.entities.enemies.Wraith;
 import gameengine.entities.projectiles.FireBow;
 import gameengine.graphics.Animation;
@@ -30,6 +31,7 @@ public class Player extends Creature {
     private int attack_cdCount = 0;
     private boolean attack_rdy = true;
     private boolean attacking = false;
+    private int attackManaCost = 20;
 
 
     private boolean ending = false;
@@ -41,6 +43,10 @@ public class Player extends Creature {
     private int ticksHurt = 20;
     private int tickCountHurt;
     private final Animation animation_hurting = new Animation(100, Assets.getInstance().mage_hurt);
+
+    // Stats
+    public int PLAYER_MAX_LIFE=50;
+    public int PLAYER_MAX_MANA=50;
 
 
     public Player(int x, int y, WorldManager.WorldKey world) {
@@ -65,7 +71,13 @@ public class Player extends Creature {
         animations.add(animation_jump);
         animations.add(animation_attack);
 
-        this.life=20;
+        this.MAX_LIFE=PLAYER_MAX_LIFE;
+        this.life=MAX_LIFE;
+        this.lifeRegen=5;
+        this.MAX_MANA=PLAYER_MAX_MANA;
+        this.mana=MAX_MANA;
+        this.manaRegen=20;
+
     }
 
     @Override
@@ -79,7 +91,7 @@ public class Player extends Creature {
                yPos = Game.playerSpawnY;
                ending = false;
                tickCount=0;
-               life=20;
+               life=PLAYER_MAX_LIFE;
             }
         }
         if (hurting) {
@@ -111,6 +123,7 @@ public class Player extends Creature {
                 attack_rdy = true;
                 attack_cdCount = 0;
                 attacking = false;
+                mana-=attackManaCost;
                 EntityManager.getInstance().addEntity(new FireBow((int) xPos, (int) yPos, facingLeft, world));
                 updateAnimation();
             }
@@ -126,7 +139,10 @@ public class Player extends Creature {
 
         // Animation
         updateAnimation();
-
+        //Interface
+        Interface.getInstance().tick();
+        //Regen
+        regen();
 
     }
 
@@ -147,7 +163,7 @@ public class Player extends Creature {
 
         animation.tick();
 
-        //Reset inactive
+        //Reset inactive Animations
         for (Animation a : animations) {
             if (!(a == animation)) {
                 a.reset();
@@ -160,9 +176,10 @@ public class Player extends Creature {
 
         //Attack
         if (KeyManager.getInstance().keys[KeyEvent.VK_E] && attack_rdy) {
-            attack_rdy = false;
-            attacking = true;
-
+            if(mana>=attackManaCost) {
+                attack_rdy = false;
+                attacking = true;
+            }
         }
         //JUMP
         if (KeyManager.getInstance().keys[KeyEvent.VK_SPACE] || KeyManager.getInstance().keys[KeyEvent.VK_W]) {
@@ -217,6 +234,7 @@ public class Player extends Creature {
         if (Game.DRAW_HITBOX) {
             g.drawRect(x + hitBox.x, y + hitBox.y, hitBox.width, hitBox.height);
         }
+
     }
 
     @Override

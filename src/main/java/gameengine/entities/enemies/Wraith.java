@@ -25,7 +25,7 @@ public class Wraith extends Creature {
     private int tickCount;
     private final Animation animation_dying = new Animation(50, Assets.getInstance().wraith_01_dying);
 
-    private int dmg = 5;
+    private int dmg = 20;
 
 
     private boolean attacking = false;

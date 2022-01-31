@@ -45,6 +45,10 @@ public class Assets {
 
     public BufferedImage[] portal_door = new BufferedImage[1];
 
+    //Interface
+    public BufferedImage lifeBar;
+    public BufferedImage manaBar;
+
 
     private Assets() {
         this.init();
@@ -61,6 +65,9 @@ public class Assets {
         font56 = FontLoader.loadFont(Assets.class.getResourceAsStream("/fonts/Silkscreen/slkscr.ttf"),56);
 
         portal_door[0] = ImageLoader.loadImage("/PNG/Objects/door4.png");
+
+        lifeBar= ImageLoader.loadImage("/PNG/Interface/LifeBar.png");
+        manaBar= ImageLoader.loadImage("/PNG/Interface/ManaBar.png");
 
         initTiles();
         initMageAnimations();
