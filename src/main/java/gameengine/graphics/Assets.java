@@ -30,13 +30,22 @@ public class Assets {
 
 
     //Tiles
-    public BufferedImage tile12;
-    public BufferedImage tile30;
-    public BufferedImage tile31;
-    public BufferedImage tile32;
-    public BufferedImage tile52;
-    public BufferedImage tile53;
-    public BufferedImage tile55;
+    public BufferedImage airTile;
+    public BufferedImage dirtTileLeft;
+    public BufferedImage dirtTileRight;
+    public BufferedImage dirtTileMid;
+
+    public BufferedImage grassTileMid;
+    public BufferedImage grassTileRight;
+    public BufferedImage grassTileLeft;
+
+    public BufferedImage grassPlattformTileRight;
+    public BufferedImage grassPlattformTileLeft;
+
+    public BufferedImage grassCornerTileRight;
+    public BufferedImage grassCornerTileLeft;
+
+
 
     // Fonts
     public Font font28;
@@ -76,13 +85,35 @@ public class Assets {
     }
 
     public void initTiles() {
-        tile12 = ImageLoader.loadImage("/PNG/Tiles/tile12.png");
-        tile30 = ImageLoader.loadImage("/PNG/Tiles/tile30.png");
-        tile31 = ImageLoader.loadImage("/PNG/Tiles/tile31.png");
-        tile32 = ImageLoader.loadImage("/PNG/Tiles/tile32.png");
-        tile52 = ImageLoader.loadImage("/PNG/Tiles/tile52.png");
-        tile53 = ImageLoader.loadImage("/PNG/Tiles/tile53.png");
-        tile55 = ImageLoader.loadImage("/PNG/Tiles/tile55.png");
+        //AirTile
+        //12
+        airTile = ImageLoader.loadImage("/PNG/Tiles/tile12.png");
+
+        //dirtTileLeft
+        dirtTileLeft = ImageLoader.loadImage("/PNG/Tiles/tile90.png");
+        //DirtTileRight
+        dirtTileRight = ImageLoader.loadImage("/PNG/Tiles/tile88.png");
+        //DirtTileMid
+        dirtTileMid = ImageLoader.loadImage("/PNG/Tiles/tile52.png");
+
+        //GrassTileRight
+        grassPlattformTileRight = ImageLoader.loadImage("/PNG/Tiles/tile65.png");
+        //GrassTileLeft
+        grassPlattformTileLeft = ImageLoader.loadImage("/PNG/Tiles/tile66.png");
+
+        //GrassTileMid
+        grassTileMid = ImageLoader.loadImage("/PNG/Tiles/tile46.png");
+        //GrassTileRight
+        grassTileRight = ImageLoader.loadImage("/PNG/Tiles/tile63.png");
+        //GrassTileLeft
+        grassTileLeft = ImageLoader.loadImage("/PNG/Tiles/tile68.png");
+
+        //GrassTileRight
+        grassCornerTileRight = ImageLoader.loadImage("/PNG/Tiles/tile91.png");
+        //GrassTileLeft
+        grassCornerTileLeft = ImageLoader.loadImage("/PNG/Tiles/tile94.png");
+
+
     }
 
     public void initMageAnimations() {

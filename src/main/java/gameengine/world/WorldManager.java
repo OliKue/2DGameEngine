@@ -1,8 +1,8 @@
 package gameengine.world;
 
-import gameengine.entities.EntityManager;
-import gameengine.entities.staticEntities.Portal;
 import gameengine.tile.Tile;
+import gameengine.world.levels.BaseWorld;
+import gameengine.world.levels.World;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,26 +12,21 @@ public class WorldManager {
     private static final WorldManager OBJ = new WorldManager();
 
     private Map<WorldKey, World> worldMap = new HashMap<>();
-    private WorldKey activeWorld = WorldKey.firstWorld;
+    private WorldKey activeWorld = WorldKey.baseWorld;
 
     public enum WorldKey {
-        firstWorld,
-        secondWorld
+        baseWorld,
     }
 
     private WorldManager() {
-        World firstWorld = new World("/worlds/firstWorld.txt");
-        worldMap.put(WorldKey.firstWorld, firstWorld);
-        World secondWorld = new World("/worlds/secondWorld.txt");
-        worldMap.put(WorldKey.secondWorld, secondWorld);
+        World baseWorld = new BaseWorld();
+        worldMap.put(WorldKey.baseWorld, baseWorld);
 
-        Portal firstToSecond = new Portal(firstWorld.getWidth() * Tile.TILEWIDTH - 100, firstWorld.getHeight()* Tile.TILEHEIGTH - 60-48, WorldKey.firstWorld, WorldKey.secondWorld, 250, secondWorld.getHeight() * Tile.TILEHEIGTH - 200);
-        EntityManager.getInstance().addEntity(firstToSecond);
-
-        Portal secondToFirst = new Portal(secondWorld.getWidth() * Tile.TILEWIDTH - 100, secondWorld.getHeight()* Tile.TILEHEIGTH - 60-48, WorldKey.secondWorld, WorldKey.firstWorld, 250, firstWorld.getHeight() * Tile.TILEHEIGTH - 200);
-        EntityManager.getInstance().addEntity(secondToFirst);
     }
-
+    public void changeWorld(WorldKey key) {
+        activeWorld = key;
+        BackgroundManager.getInstance().setBackground(getActiveWorld().getBackground());
+    }
     public static WorldManager getInstance() {
         return OBJ;
     }
@@ -48,7 +43,5 @@ public class WorldManager {
         return activeWorld;
     }
 
-    public void changeWorld(WorldKey key) {
-        activeWorld = key;
-    }
+
 }

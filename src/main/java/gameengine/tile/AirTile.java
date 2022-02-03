@@ -5,7 +5,7 @@ import gameengine.graphics.Assets;
 public class AirTile extends Tile{
     public AirTile(int id) {
         super(id);
-        this.texture= Assets.getInstance().tile12;
+        this.texture= Assets.getInstance().airTile;
     }
 
     @Override

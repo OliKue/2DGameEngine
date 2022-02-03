@@ -12,21 +12,28 @@ public class TileHandler {
     public Tile grassTileMi;
     public Tile grassTileRi;
 
+    public Tile grassPlattformTileLe;
+    public Tile grassPlattformTileRi;
+
     public Tile dirtTileLe;
     public Tile dirtTileMi;
     public Tile dirtTileRi;
+
+    public Tile grassCornerTileLe;
+    public Tile grassCornerTileRi;
 
     public TileHandler() {
         initTiles();
     }
 
-    public static TileHandler getInstance(){
+    public static TileHandler getInstance() {
         return OBJ;
     }
 
     private void initTiles() {
         airTile = new AirTile(0);
         tiles[0] = airTile;
+
         grassTileLe = new GrassTileLe(1);
         tiles[1] = grassTileLe;
         grassTileMi = new GrassTileMi(2);
@@ -40,5 +47,15 @@ public class TileHandler {
         tiles[5] = dirtTileMi;
         dirtTileRi = new DirtTileRi(6);
         tiles[6] = dirtTileRi;
+
+        grassPlattformTileLe = new GrassPlattformTileLe(7);
+        tiles[7] = grassPlattformTileLe;
+        grassPlattformTileRi = new GrassPlattformTileRi(8);
+        tiles[8] = grassPlattformTileRi;
+
+        grassCornerTileLe = new GrassCornerTileLe(9);
+        tiles[9] = grassCornerTileLe;
+        grassCornerTileRi = new GrassCornerTileRi(10);
+        tiles[10] = grassCornerTileRi;
     }
 }

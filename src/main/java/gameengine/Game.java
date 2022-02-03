@@ -9,7 +9,7 @@ import gameengine.entities.enemies.Wraith;
 import gameengine.graphics.GameCamera;
 import gameengine.input.KeyManager;
 import gameengine.tile.Tile;
-import gameengine.world.Background;
+import gameengine.world.BackgroundManager;
 import gameengine.world.WorldManager;
 
 import java.awt.*;
@@ -96,7 +96,7 @@ public class Game implements Runnable {
             case GAME:
                 GameCamera.getInstance().tick();
                 EntityManager.getInstance().tick();
-                Background.getInstance().tick();
+                BackgroundManager.getInstance().tick();
                 Interface.getInstance().tick();
                 //Change to Menu
                 if (KeyManager.getInstance().escapeReleased) {
@@ -132,7 +132,7 @@ public class Game implements Runnable {
         //Draw new
         switch (gameState) {
             case GAME:
-                Background.getInstance().render(g);
+                BackgroundManager.getInstance().render(g);
                 GameCamera.getInstance().render(g);
                 EntityManager.getInstance().render(g);
                 Interface.getInstance().render(g);

@@ -5,9 +5,11 @@ import java.awt.image.BufferedImage;
 
 public class Tile {
     public static final int TILEWIDTH = 48, TILEHEIGTH = 48;
+
     protected BufferedImage texture;
 
     protected final int id;
+
 
     public Tile(int id) {
         this.id = id;
@@ -20,19 +22,7 @@ public class Tile {
         g.drawImage(texture, x, y, null);
     }
 
-    public boolean isSolid(){
+    public boolean isSolid() {
         return true;
-    }
-
-    public BufferedImage getTexture() {
-        return texture;
-    }
-
-    public void setTexture(BufferedImage texture) {
-        this.texture = texture;
-    }
-
-    public int getId() {
-        return id;
     }
 }
