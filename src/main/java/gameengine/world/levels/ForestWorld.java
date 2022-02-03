@@ -19,8 +19,10 @@ public class ForestWorld extends World {
     public ForestWorld() {
         super(WORLD_FILE_PATH, BACKGROUND_PATH);
 
+        this.isHostile=true;
+
         // Add Portals
-        Portal portalToBase = new Portal(getWidth()* Tile.TILEWIDTH - 128 , getHeight()*Tile.TILEHEIGTH - 148,
+        Portal portalToBase = new Portal(128 , getHeight()*Tile.TILEHEIGTH - 148,
                 WorldManager.WorldKey.forestWorld, WorldManager.WorldKey.baseWorld,
                 BaseWorld.xSpawn, BaseWorld.ySpawn);
         EntityManager.getInstance().addEntity(portalToBase);

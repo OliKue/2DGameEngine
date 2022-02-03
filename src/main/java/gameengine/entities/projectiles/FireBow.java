@@ -5,6 +5,7 @@ import gameengine.entities.Entity;
 import gameengine.entities.EntityManager;
 import gameengine.graphics.Animation;
 import gameengine.graphics.Assets;
+import gameengine.sound.SoundManager;
 import gameengine.tile.Tile;
 import gameengine.world.WorldManager;
 
@@ -15,11 +16,13 @@ public class FireBow extends Projectile {
     private boolean ending = false;
     private int ticksUntilInactive = 10;
     private int tickCount;
-    private final Animation fire_end = new Animation(100, Assets.getInstance().fire_end);;
+    private final Animation fire_end = new Animation(100, Assets.getInstance().fire_end);
+    ;
 
 
     public FireBow(int x, int y, boolean facingLeft, WorldManager.WorldKey world) {
         super(x, y, 128, 128, facingLeft, world);
+
 
         this.animation = this.fire_flying;
 
@@ -49,6 +52,10 @@ public class FireBow extends Projectile {
 
         animation.tick();
         if (ending) {
+            if (tickCount == 1) {
+                SoundManager.getInstance().setFile("fireBowEnd");
+                SoundManager.getInstance().play();
+            }
             tickCount++;
             if (tickCount > ticksUntilInactive) {
                 this.active = false;
@@ -61,14 +68,14 @@ public class FireBow extends Projectile {
 
     private void checkDmg() {
         for (Entity e : EntityManager.getInstance().getEntities()) {
-            if (e.equals(this)|| !(e instanceof Creature))
+            if (e.equals(this) || !(e instanceof Creature))
                 continue;
-            if (e.getHitBox().intersects(getHitBox())||getHitBox().intersects(e.getHitBox())) {
+            if (e.getHitBox().intersects(getHitBox()) || getHitBox().intersects(e.getHitBox())) {
                 ((Creature) e).applyDmg(dmg);
                 this.dmg = 0;
                 xVel = 0;
                 this.animation = this.fire_end;
-                ending=true;
+                ending = true;
             }
         }
     }

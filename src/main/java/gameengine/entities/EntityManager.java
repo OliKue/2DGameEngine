@@ -36,8 +36,12 @@ public class EntityManager {
 
 
         //Add Enemy manager
-        if(enemyCounter<2){
-            addEntity(new Wraith((int) (player.xPos), (int) (player.yPos-200), player.world));
+        if(enemyCounter<2 && WorldManager.getInstance().getActiveWorld().isHostile()){
+
+            int x = ((int) (Math.random() * 500))-250;
+            int y = ((int) (Math.random() * 500));
+
+            addEntity(new Wraith((int) (player.xPos+x), (int) (player.yPos-y), player.world));
         }
     }
     public void render(Graphics g){

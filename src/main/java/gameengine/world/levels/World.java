@@ -27,6 +27,8 @@ public abstract class  World {
 
     public static int xSpawn, ySpawn;
 
+    protected boolean isHostile=false;
+
     public World(String worldFilePath, String backgroundPath) {
         this.worldFilePath = worldFilePath;
         this.backgroundPath = backgroundPath;
@@ -104,5 +106,9 @@ public abstract class  World {
 
     public BufferedImage getBackground() {
         return background;
+    }
+
+    public boolean isHostile() {
+        return isHostile;
     }
 }

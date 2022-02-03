@@ -8,6 +8,7 @@ import gameengine.graphics.Animation;
 import gameengine.graphics.Assets;
 import gameengine.graphics.GameCamera;
 import gameengine.input.KeyManager;
+import gameengine.sound.SoundManager;
 import gameengine.world.WorldManager;
 import gameengine.world.levels.BaseWorld;
 
@@ -182,6 +183,8 @@ public class Player extends Creature {
             if (mana >= attackManaCost) {
                 attack_rdy = false;
                 attacking = true;
+                SoundManager.getInstance().setFile("fireBowStart");
+                SoundManager.getInstance().play();
             }
         }
         //JUMP

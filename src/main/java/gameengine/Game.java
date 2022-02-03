@@ -8,6 +8,7 @@ import gameengine.entities.Player;
 import gameengine.entities.enemies.Wraith;
 import gameengine.graphics.GameCamera;
 import gameengine.input.KeyManager;
+import gameengine.sound.SoundManager;
 import gameengine.tile.Tile;
 import gameengine.world.BackgroundManager;
 import gameengine.world.WorldManager;
@@ -40,11 +41,8 @@ public class Game implements Runnable {
         this.display = new Display(title, width, height);
 
         EntityManager.setPlayer(new Player(playerSpawnX, playerSpawnY, WorldManager.getInstance().getActiveWorldKey()));
+        SoundManager.getInstance().playMusic();
 
-        EntityManager.getInstance().addEntity(new Wraith(48, WorldManager.getInstance().getActiveWorld().getHeight() * Tile.TILEHEIGTH - 150, WorldManager.getInstance().getActiveWorldKey()));
-
-
-//        EntityManager.getInstance().addEntity(new Wraith(300, World.getInstance().getHeight() * Tile.TILEHEIGTH - 300));
     }
 
     @Override
