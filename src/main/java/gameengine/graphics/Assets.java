@@ -52,7 +52,7 @@ public class Assets {
     public Font font56;
 
 
-    public BufferedImage[] portal_door = new BufferedImage[1];
+    public BufferedImage[] portal = new BufferedImage[8];
 
     //Interface
     public BufferedImage lifeBar;
@@ -73,15 +73,25 @@ public class Assets {
         font28 = FontLoader.loadFont(Assets.class.getResourceAsStream("/fonts/Silkscreen/slkscr.ttf"),28);
         font56 = FontLoader.loadFont(Assets.class.getResourceAsStream("/fonts/Silkscreen/slkscr.ttf"),56);
 
-        portal_door[0] = ImageLoader.loadImage("/PNG/Objects/door4.png");
-
         lifeBar= ImageLoader.loadImage("/PNG/Interface/LifeBar.png");
         manaBar= ImageLoader.loadImage("/PNG/Interface/ManaBar.png");
 
+        initPortal();
         initTiles();
         initMageAnimations();
         initFireAnimations();
         initWraith_01();
+    }
+
+    public void initPortal(){
+        portal[0] = ImageLoader.loadImage("/PNG/Portal/gp_1.png");
+        portal[1] = ImageLoader.loadImage("/PNG/Portal/gp_2.png");
+        portal[2] = ImageLoader.loadImage("/PNG/Portal/gp_3.png");
+        portal[3] = ImageLoader.loadImage("/PNG/Portal/gp_4.png");
+        portal[4] = ImageLoader.loadImage("/PNG/Portal/gp_5.png");
+        portal[5] = ImageLoader.loadImage("/PNG/Portal/gp_6.png");
+        portal[6] = ImageLoader.loadImage("/PNG/Portal/gp_7.png");
+        portal[7] = ImageLoader.loadImage("/PNG/Portal/gp_8.png");
     }
 
     public void initTiles() {

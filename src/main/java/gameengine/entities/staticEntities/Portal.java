@@ -5,32 +5,29 @@ import gameengine.entities.EntityManager;
 import gameengine.graphics.Animation;
 import gameengine.graphics.Assets;
 import gameengine.graphics.GameCamera;
-import gameengine.input.KeyManager;
-import gameengine.tile.Tile;
 import gameengine.world.WorldManager;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class Portal extends Entity {
 
     Animation animation;
     WorldManager.WorldKey targetWorldKey;
-    int nextWorldSpawnX, getNextWorldSpawnY;
+    int nextWorldSpawnX, nextWorldSpawnY;
     private Point center;
 
 
-    public Portal(int xPos, int yPos, WorldManager.WorldKey world, WorldManager.WorldKey targetWorldKey, int nextWorldSpawnX, int getNextWorldSpawnY) {
+    public Portal(int xPos, int yPos, WorldManager.WorldKey world, WorldManager.WorldKey targetWorldKey, int nextWorldSpawnX, int nextWorldSpawnY) {
 
-        super(xPos, yPos, Assets.getInstance().portal_door[0].getWidth(), Assets.getInstance().portal_door[0].getHeight(), world);
+        super(xPos, yPos, Assets.getInstance().portal[0].getWidth(), Assets.getInstance().portal[0].getHeight(), world);
 
-        animation = new Animation(100, Assets.getInstance().portal_door);
+        animation = new Animation(100, Assets.getInstance().portal);
 
         this.targetWorldKey = targetWorldKey;
         this.nextWorldSpawnX = nextWorldSpawnX;
-        this.getNextWorldSpawnY = getNextWorldSpawnY;
+        this.nextWorldSpawnY = nextWorldSpawnY;
 
-        center = new Point(xPos+width/2, yPos+height/2);
+        center = new Point(xPos + width / 2, yPos + height / 2);
 
 
     }
@@ -39,9 +36,10 @@ public class Portal extends Entity {
     public void tick() {
         if (EntityManager.getPlayer().getHitBox().contains(center)) {
             WorldManager.getInstance().changeWorld(targetWorldKey);
-            EntityManager.getPlayer().teleport(nextWorldSpawnX, getNextWorldSpawnY);
-            EntityManager.getPlayer().world=targetWorldKey;
+            EntityManager.getPlayer().teleport(nextWorldSpawnX, nextWorldSpawnY);
+            EntityManager.getPlayer().world = targetWorldKey;
         }
+        animation.tick();
     }
 
     @Override

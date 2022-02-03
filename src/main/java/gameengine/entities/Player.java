@@ -9,6 +9,7 @@ import gameengine.graphics.Assets;
 import gameengine.graphics.GameCamera;
 import gameengine.input.KeyManager;
 import gameengine.world.WorldManager;
+import gameengine.world.levels.BaseWorld;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -45,8 +46,8 @@ public class Player extends Creature {
     private final Animation animation_hurting = new Animation(100, Assets.getInstance().mage_hurt);
 
     // Stats
-    public int PLAYER_MAX_LIFE=50;
-    public int PLAYER_MAX_MANA=50;
+    public int PLAYER_MAX_LIFE = 50;
+    public int PLAYER_MAX_MANA = 50;
 
 
     public Player(int x, int y, WorldManager.WorldKey world) {
@@ -71,12 +72,12 @@ public class Player extends Creature {
         animations.add(animation_jump);
         animations.add(animation_attack);
 
-        this.MAX_LIFE=PLAYER_MAX_LIFE;
-        this.life=MAX_LIFE;
-        this.lifeRegen=5;
-        this.MAX_MANA=PLAYER_MAX_MANA;
-        this.mana=MAX_MANA;
-        this.manaRegen=20;
+        this.MAX_LIFE = PLAYER_MAX_LIFE;
+        this.life = MAX_LIFE;
+        this.lifeRegen = 5;
+        this.MAX_MANA = PLAYER_MAX_MANA;
+        this.mana = MAX_MANA;
+        this.manaRegen = 20;
 
     }
 
@@ -87,18 +88,20 @@ public class Player extends Creature {
             xVel = 0;
             tickCount++;
             if (tickCount > ticksUntilInactive) {
-               xPos = Game.playerSpawnX;
-               yPos = Game.playerSpawnY;
-               ending = false;
-               tickCount=0;
-               life=PLAYER_MAX_LIFE;
+                WorldManager.getInstance().changeWorld(WorldManager.WorldKey.baseWorld);
+                xPos = BaseWorld.xSpawn;
+                yPos = BaseWorld.ySpawn;
+
+                ending = false;
+                tickCount = 0;
+                life = PLAYER_MAX_LIFE;
             }
         }
         if (hurting) {
             tickCountHurt++;
             if (tickCountHurt > ticksHurt) {
                 hurting = false;
-                tickCountHurt=0;
+                tickCountHurt = 0;
             }
         }
 
@@ -123,7 +126,7 @@ public class Player extends Creature {
                 attack_rdy = true;
                 attack_cdCount = 0;
                 attacking = false;
-                mana-=attackManaCost;
+                mana -= attackManaCost;
                 EntityManager.getInstance().addEntity(new FireBow((int) xPos, (int) yPos, facingLeft, world));
                 updateAnimation();
             }
@@ -147,11 +150,11 @@ public class Player extends Creature {
     }
 
     private void updateAnimation() {
-        if(ending){
+        if (ending) {
             animation = animation_dying;
-        }else if(hurting){
+        } else if (hurting) {
             animation = animation_hurting;
-        }else if (attacking) {
+        } else if (attacking) {
             animation = animation_attack;
         } else if (jumping) {
             animation = animation_jump;
@@ -176,7 +179,7 @@ public class Player extends Creature {
 
         //Attack
         if (KeyManager.getInstance().keys[KeyEvent.VK_E] && attack_rdy) {
-            if(mana>=attackManaCost) {
+            if (mana >= attackManaCost) {
                 attack_rdy = false;
                 attacking = true;
             }

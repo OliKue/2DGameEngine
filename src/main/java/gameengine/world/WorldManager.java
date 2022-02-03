@@ -2,6 +2,7 @@ package gameengine.world;
 
 import gameengine.tile.Tile;
 import gameengine.world.levels.BaseWorld;
+import gameengine.world.levels.ForestWorld;
 import gameengine.world.levels.World;
 
 import java.util.HashMap;
@@ -16,11 +17,15 @@ public class WorldManager {
 
     public enum WorldKey {
         baseWorld,
+        forestWorld
     }
 
     private WorldManager() {
         World baseWorld = new BaseWorld();
         worldMap.put(WorldKey.baseWorld, baseWorld);
+
+        World forestWorld = new ForestWorld();
+        worldMap.put(WorldKey.forestWorld, forestWorld);
 
     }
     public void changeWorld(WorldKey key) {

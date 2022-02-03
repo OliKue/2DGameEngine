@@ -25,6 +25,8 @@ public abstract class  World {
 
     private int[][] tiles;
 
+    public static int xSpawn, ySpawn;
+
     public World(String worldFilePath, String backgroundPath) {
         this.worldFilePath = worldFilePath;
         this.backgroundPath = backgroundPath;
