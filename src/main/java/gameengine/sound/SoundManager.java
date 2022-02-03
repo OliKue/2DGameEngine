@@ -28,6 +28,9 @@ public class SoundManager {
         soundsMap.put("fireBowFlying", getClass().getResource("/sounds/FireBowFlying.wav"));
         soundsMap.put("fireBowEnd", getClass().getResource("/sounds/FireBowEnd.wav"));
 
+        soundsMap.put("wraith01_following", getClass().getResource("/sounds/wraith01_following.wav"));
+        soundsMap.put("wraith01_hit", getClass().getResource("/sounds/wraith01_hit.wav"));
+
         //Music
         try {
             AudioInputStream ais = AudioSystem.getAudioInputStream(getClass().getResource("/sounds/Emotional Loop 2.wav"));

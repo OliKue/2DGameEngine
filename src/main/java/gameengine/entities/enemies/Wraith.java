@@ -8,6 +8,7 @@ import gameengine.entities.Player;
 import gameengine.graphics.Animation;
 import gameengine.graphics.Assets;
 import gameengine.graphics.GameCamera;
+import gameengine.sound.SoundManager;
 import gameengine.world.WorldManager;
 
 import java.awt.*;
@@ -36,6 +37,7 @@ public class Wraith extends Creature {
     private Animation animation = animation_idle;
 
     private boolean facingLeft = false;
+    private boolean following = false;
 
     public Wraith(int x, int y, WorldManager.WorldKey world) {
         super(x, y, Assets.getInstance().wraith_01_idle[0].getWidth(), Assets.getInstance().wraith_01_idle[0].getHeight(), world);
@@ -107,6 +109,8 @@ public class Wraith extends Creature {
                 if (player.getHitBox().intersects(getHitBox()) || getHitBox().intersects(player.getHitBox())) {
                     player.applyDmg(dmg);
                 }
+                SoundManager.getInstance().setFile("wraith01_hit");
+                SoundManager.getInstance().play();
             }
         }
 
@@ -122,9 +126,15 @@ public class Wraith extends Creature {
         if (target.distance(position) < 5) {
             attacking = true;
         } else if(target.distance(position) < 500){
+            if(!following){
+                SoundManager.getInstance().setFile("wraith01_following");
+                SoundManager.getInstance().play();
+            }
+            following=true;
             calculatePathX();
             calculatePathY();
         }  else{
+            following=false;
             slowDownX();
             slowDownY();
         }
